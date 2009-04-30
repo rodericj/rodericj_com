@@ -1,0 +1,23 @@
+<font color=red>{{response}}</font>
+<h1>Create an account</h1>
+<form action="/callme/createaccount/" method="post">
+User Name: <input type="text" name="userName">
+<font color=red size=2>required</font><br>
+First: <input type="text" name="first_name" maxlength=100>
+Last: <input type="text" name="last_name" maxlength=100><br>
+Password: <input type="password" name="password" maxlength=10>
+<font color=red size=2>required</font><br>
+Confirm Password: <input type="password" name="confirmpassword" maxlength=10>
+<font color=red size=2>required</font><br>
+Email: <input type="text" name="email"><br>
+Phone number: <input type="text" name="phone_number">
+<font color=red size=2>required</font><br>
+<input type="submit" value="submit" maxlength=10><br>
+</form>
+
+<h1>Already a User? Login</h1>
+<form action="/callme/login/" method="post">
+User Name: <input type="text" name="userName"><br>
+Password: <input type="password" name="password" maxlength=10><br>
+<input type="submit" value="submit" maxlength=10><br>
+</form>

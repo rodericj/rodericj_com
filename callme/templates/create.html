@@ -1,0 +1,54 @@
+<h1>Create a Message</h1>
+<font color=red>{{response}}</font>
+<form action="/callme/newaction/" method="post">
+Name: <input type="text" name="name"><br>
+Phone number to call at alarm: <input type="text" name="phone_number" maxlength=10><br>
+Email: <input type="text" name="email" maxlength=100><br>
+
+Time: <select name="hour">
+{% for i in hours %}
+<option>{{i}}</option>
+{% endfor %} 
+</select>
+
+:<select name="minute">
+{% for i in minutes %}
+<option>{{i}}</option>
+{% endfor %} 
+</select>
+
+<select name="ampm">
+{% for i in ampm %}
+<option>{{i}}</option>
+{% endfor %} 
+</select>
+<br>
+Day: <select name="day">
+{% for i in days %}
+<option>{{i}}</option>
+{% endfor %} 
+</select>
+
+<select name="month">
+{% for i in months %}
+<option>{{i}}</option>
+{% endfor %} 
+</select>
+
+<select name="year">
+{% for i in years %}
+<option>{{i}}</option>
+{% endfor %} 
+</select>
+
+<br>
+
+<input type="hidden" name="client" value="0">
+<input type="submit" value="submit" maxlength=10><br>
+</form>
+
+<H2>User Info</H2>
+name: {{user.username}}<br>
+number:{{profile.phone_number}}<br>
+secret:{{profile.secret}}<br>
+<a href="/callme/logout">logout</a>
