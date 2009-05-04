@@ -6,6 +6,7 @@ from django.http import HttpResponse
 from django.http import HttpResponseRedirect
 from django.shortcuts import render_to_response
 from django.contrib.auth import authenticate, login, logout
+#from django.contrib.auth.views import change_password
 from django.contrib.auth.decorators import login_required
 from django.core.mail import send_mail
 from django.contrib.auth.models import User
@@ -118,6 +119,12 @@ def createaccount(request):
 	#send_mail('Callme Reminder', message, [recipient], recipient, fail_silently=False)
 	#print "sent"
 
+@login_required
+def change_password_view(request):
+	print "view:change_password_view"
+	change_password()
+	args = populatecreatepage(request.user)
+	return render_to_response('create.html', args)
 @login_required
 def logout_view(request):
 	print "view:logout_view"

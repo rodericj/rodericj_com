@@ -11,6 +11,7 @@ urlpatterns = patterns('',
      (r'^createaccount/', 'rodericj_com.callme.views.createaccount'),
      (r'^login/', 'rodericj_com.callme.views.Clogin'),
      (r'^logout/', 'rodericj_com.callme.views.logout_view'),
+     (r'^change_password/', 'django.contrib.auth.views.password_change'),
      (r'^action/', 'rodericj_com.callme.views.action'),
      (r'^newaction/', 'rodericj_com.callme.views.newaction'),
 	

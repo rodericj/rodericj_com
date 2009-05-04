@@ -10,6 +10,9 @@ class CUser(models.Model):
 	date_last_used = models.DateTimeField('date used')
 	secret = models.IntegerField()
 
+	class Admin:
+		pass
+
 	def __str__(self):
 		#ret = self.username + " "
 		#ret += self.first_name + " "
@@ -24,6 +27,8 @@ class CAction(models.Model):
 	date_finished = models.DateTimeField('date finished')
 	date_to_be_executed = models.DateTimeField('date to be executed')
 
+	class Admin:
+		pass
 	def __str__(self):
 		ret = "message: "+ str(self.message)
 		ret += " to " + str(phone_number)
