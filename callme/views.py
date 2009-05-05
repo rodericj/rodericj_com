@@ -8,9 +8,7 @@ from django.http import HttpResponse
 from django.http import HttpResponseRedirect
 from django.shortcuts import render_to_response
 from django.contrib.auth import authenticate, login, logout
-#from django.contrib.auth.views import change_password
 from django.contrib.auth.decorators import login_required
-#from django.core.mail import send_mail
 from django.contrib.auth.models import User
 
 def start(request):
@@ -58,7 +56,7 @@ def validate(request):
 	print "views:validate"
 	code = request.POST.get('code', '-1')
 	if len(code) == 0:
-		code = 0
+		code = '0'
 	
 	userlist = User.objects.filter(username=request.user.username)
 	
@@ -68,15 +66,16 @@ def validate(request):
 		return render_to_response('create.html', args)
 	
 	profile = userlist[0].get_profile()
-	if profile.secret != int(code):
+	if not code.isdigit() or profile.secret != int(code):
+		print 'wrong code'
 		args = util.populatecreatepage(request.user)
 		args['response'] = "wrong code"
 	else:
 		profile.verified = True
 		profile.save()
+		args = util.populatecreatepage(request.user)
+		args['response'] = "Successfully validated phone number"
 		
-	args = util.populatecreatepage(request.user)
-	args['response'] = "Successfully validated phone number"
 	return render_to_response('create.html', args)
 
 def createaccount(request):
@@ -86,9 +85,13 @@ def createaccount(request):
 	password = request.POST.get('password', '')
 	confirmpassword = request.POST.get('confirmpassword', '')
 	email = request.POST.get('email', '')
-	phone_number = request.POST.get('phone_number', '')
+	phone_number1 = request.POST.get('phone_number1', '')
+	phone_number2 = request.POST.get('phone_number2', '')
+	phone_number3 = request.POST.get('phone_number3', '')
+	phone_number = phone_number1+"-"+phone_number2+"-"+phone_number3
 	first_name = request.POST.get('first_name', '')
 	last_name = request.POST.get('last_name', '')
+
 
 	#error checking
 	if len(username) < 1:
@@ -117,12 +120,22 @@ def createaccount(request):
 		response = "User name already exists"
 		rc={'val':1, 'response':response}
 
+	#dummy up a CUser for the final CUser checking
+	now = datetime.now()
+	secret = int(random()*100000)
+	testresults = CUser(phone_number=phone_number, date_last_used=now, 
+			verified=False, clients=1, 
+			secret=secret).validate()
+	#get rid of the user which we expect won't be found
+	testresults.pop('user')
+	if testresults:
+		rc['val'] = 1
+		response = testresults.popitem()
+
 	if rc['val']:
 		return render_to_response('registration/login.html', {'response':response})
 	else:
 		#We are good to create a new user
-		now = datetime.now()
-		secret = int(random()*100000)
 		user = User.objects.create_user(username, email, password)
 		user.first_name = first_name
 		user.last_name = last_name
@@ -133,7 +146,7 @@ def createaccount(request):
 		user = authenticate(username=username, password=password)
 		login(request, user)
 
-		receiver = str(phone_number) + "@txt.att.net"
+		receiver = phone_number.replace('-', '') + "@txt.att.net"
 		subject = "confirmation of account"
 		message = "type in this number on the site: "+ str(secret)
 		sender = "roderic@gmail.com"
@@ -141,16 +154,6 @@ def createaccount(request):
 		args = util.populatecreatepage(user)
 		
 		return render_to_response('create.html', args)
-
-#def sendSecret(user):
-	#recipient = "5858020632@txt.att.net"
-	#destination = "5858020632"
-	#message = "You've set up a reminder to call"+destination
-	#message = "type in the following on the callme app " + str(user.secret)
-	#print "sending"
-	#send_mail('Callme Reminder', message, [recipient], recipient, fail_silently=False)
-	#print "sent"
-
 
 @login_required
 def change_password_view(request):
@@ -200,8 +203,10 @@ def newaction(request):
 	month = request.POST['month']
 	month = months_map[month]
 		
-	date = datetime(year=int(year), month=int(month), day=int(day), hour=int(hour), minute=int(minute))
+	date = datetime(year=int(year), month=int(month), day=int(day), hour=int(hour), minute=int(minute), second=0)
 	now = datetime.now()
+	print "date: "+str(date)
+	print "now: "+str(now)
 			
 	email = request.POST.get('email', '')
 	phone_number = request.POST.get('phone_number', '')
@@ -210,13 +215,15 @@ def newaction(request):
 		response = "invalid phone number"
 		rc={'val':1, 'response':response}
 
-	elif not validate_email(email):
-		response = "invalid email"
-		rc={'val':1, 'response':response}
+	#Do not really need email address here
+	#elif not validate_email(email):
+		#response = "invalid email"
+		#rc={'val':1, 'response':response}
 		
-	elif date < datetime.now():
-		response = "date is before now"
-		rc={'val':1, 'response':response}
+	#TODO this is for testing purposes. Need to uncomment this when it goes live
+	#elif date < datetime.now():
+		#response = "date is before now"
+		#rc={'val':1, 'response':response}
 
 	if rc['val'] == 1:
 		args = util.populatecreatepage(request.user)
@@ -226,11 +233,10 @@ def newaction(request):
 	#Find the user if he exists
 	list = CUser.objects.filter(phone_number=phone_number)
 		
-
 	#create the action
 	print "creating the action"
 	message = "You need to call "+ middle + phone_number + " now"
-	request.user.get_profile().caction_set.create(phone_number=phone_number, message=message, date_created=now, date_to_be_executed=date, date_finished=0)
+	request.user.get_profile().caction_set.create(phone_number=phone_number, message=message, date_created=now, date_to_be_executed=date, date_finished=now, finished = False)
 	#print user.action_set.all()
 	print "done"
 
