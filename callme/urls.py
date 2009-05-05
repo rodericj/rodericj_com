@@ -14,5 +14,6 @@ urlpatterns = patterns('',
      (r'^change_password/', 'django.contrib.auth.views.password_change'),
      (r'^action/', 'rodericj_com.callme.views.action'),
      (r'^newaction/', 'rodericj_com.callme.views.newaction'),
+     (r'^validate/', 'rodericj_com.callme.views.validate'),
 	
 )

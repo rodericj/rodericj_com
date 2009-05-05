@@ -9,15 +9,17 @@ class CUser(models.Model):
 	clients = models.CommaSeparatedIntegerField(maxlength=10)
 	date_last_used = models.DateTimeField('date used')
 	secret = models.IntegerField()
+	verified = models.BooleanField()
 
 	class Admin:
 		pass
 
 	def __str__(self):
-		#ret = self.username + " "
-		#ret += self.first_name + " "
+		ret = self.user.username + " "
+		ret += self.phone_number + " "
+		ret += self.verified and "verified" or "unverified"
 		#ret += self.last_name + " "
-		return self.phone_number
+		return ret
 
 class CAction(models.Model):
 	sender = models.ForeignKey(CUser)

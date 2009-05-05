@@ -1,5 +1,6 @@
 # Create your views here.
 from datetime import datetime
+import os
 from random import random
 from rodericj_com.callme.models import CAction, CUser
 from django.http import HttpResponse
@@ -8,7 +9,7 @@ from django.shortcuts import render_to_response
 from django.contrib.auth import authenticate, login, logout
 #from django.contrib.auth.views import change_password
 from django.contrib.auth.decorators import login_required
-from django.core.mail import send_mail
+#from django.core.mail import send_mail
 from django.contrib.auth.models import User
 
 def start(request):
@@ -51,6 +52,30 @@ def Clogin(request):
 			print "invalid login error"
 			rc={'val':1, 'response':"invalid login error"}
 	return render_to_response('registration/login.html', {'response':rc['response']})
+
+def validate(request):
+	print "views:validate"
+	code = request.POST.get('code', '-1')
+	if len(code) == 0:
+		code = 0
+	
+	userlist = User.objects.filter(username=request.user.username)
+	
+	if len(userlist) != 1:
+		args = populatecreatepage(request.user)
+		args['response'] = "we have a problem: not 1 user with this username"
+		return render_to_response('create.html', args)
+	
+	profile = userlist[0].get_profile()
+	if profile.secret != int(code):
+		args = populatecreatepage(request.user)
+		args['response'] = "wrong code"
+	else:
+		profile.verified = True
+		profile.save()
+		
+	args = populatecreatepage(request.user)
+	return render_to_response('create.html', args)
 
 def createaccount(request):
 	print "view:createaccount"
@@ -100,12 +125,17 @@ def createaccount(request):
 		user.first_name = first_name
 		user.last_name = last_name
 		my_CUser = CUser(user=user, phone_number=phone_number, 
-						clients=1, date_last_used=now, secret=secret)
+						clients=1, date_last_used=now, secret=secret, 
+						verified=False)
 		my_CUser.save()
 		user = authenticate(username=username, password=password)
 		login(request, user)
 
-		#print "We are logged in as: "+user.username
+		receiver = str(phone_number) + "@txt.att.net"
+		subject = "confirmation of account"
+		message = "type in this number on the site: "+ str(secret)
+		sender = "roderic@gmail.com"
+		sendMail(sender, receiver, subject, message)
 		args = populatecreatepage(user)
 		
 		return render_to_response('create.html', args)
@@ -118,6 +148,21 @@ def createaccount(request):
 	#print "sending"
 	#send_mail('Callme Reminder', message, [recipient], recipient, fail_silently=False)
 	#print "sent"
+
+def sendMail(sender, receiver, subject, message):
+	from email.MIMEText import MIMEText
+	import smtplib,sys
+
+	msg = MIMEText(message)
+	msg['From'] = sender
+	msg['To'] = receiver
+	msg['Subject'] = subject
+	server = smtplib.SMTP("smtp.gmail.com", 587)
+	server.ehlo()
+	server.starttls()
+	server.ehlo()
+	server.login('hollrin', 'ThlE1I8X')
+	server.sendmail(sender, receiver, msg.as_string())
 
 @login_required
 def change_password_view(request):
