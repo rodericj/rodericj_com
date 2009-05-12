@@ -7,6 +7,8 @@ from callme.models import CUser, CAction
 from django.template import RequestContext
 from django.http import HttpResponseRedirect
 from django.http import HttpResponse
+from django.contrib.auth import logout
+from django.contrib.auth.decorators import login_required
 from django.utils.translation import ugettext as _
 from google.appengine.api import users
 
@@ -95,6 +97,14 @@ def createprofile(request):
 	#return render_to_response(args, 'createprofile.html' )
 	return render_to_response(request, templatepage, args)
 		
+@login_required
+def logout_view(request):
+	print "view:logout_view"
+	logout(request)
+	ret =  HttpResponseRedirect('/account/register/')
+	return ret
+
+@login_required
 def newaction(request):
 	logging.warn("new request")
 	templatepage = 'create.html'
@@ -168,6 +178,7 @@ def newaction(request):
 	args.update(callmeutil.populatecreatepage(request.user))
 	return render_to_response(request, templatepage, args)
 
+@login_required
 def create(request):
 	logging.warning( "create")
 	for action in dir(request.user):
