@@ -104,11 +104,6 @@ def newaction(request):
 	
 	#validate
 	name = request.POST.get('name', '')
-	if len(name) > 0:
-		middle = name + " at "
-	else:
-		middle = ''
-	
 	hour = request.POST.get('hour', '')
 	minute = request.POST.get('minute', '')
 	day = request.POST.get('day', '')
@@ -153,13 +148,13 @@ def newaction(request):
 		
 	#create the action
 	logging.warn( "creating the action")
-	message = "You need to call "+ middle + phone_number + " now"
+	message = "You need to call "+ phone_number 
 	action = CAction()
 	if users.get_current_user():
 		action.sender = users.get_current_user()
 
 	action.phone_number = phone_number
-	action.message = message
+	action.message = 1#message
 	action.date_to_be_executed = date
 	action.date_created = now
 	action.date_finished = now
