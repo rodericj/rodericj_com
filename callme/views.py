@@ -1,187 +1,104 @@
-# Create your views here.
+# -*- coding: utf-8 -*-
+import logging
 from datetime import datetime
-import os
+from callme import callmeutil
 from random import random
-from rodericj_com.callme.models import CAction, CUser
-from rodericj_com import util 
-from django.http import HttpResponse
+from callme.models import CUser, CAction
+from django.template import RequestContext
 from django.http import HttpResponseRedirect
-from django.shortcuts import render_to_response
-from django.contrib.auth import authenticate, login, logout
-from django.contrib.auth.decorators import login_required
-from django.contrib.auth.models import User
+from django.http import HttpResponse
+from django.utils.translation import ugettext as _
+from google.appengine.api import users
+
+from ragendja.template import render_to_response
 
 def start(request):
-	print "view:start"
-	if request.user.is_authenticated():
-		print "User is logged in"
-		ret = HttpResponseRedirect('/callme/create/')
-	else:
-		print "user in NOT logged in"
-		ret =  HttpResponseRedirect('/accounts/login/')
-	return ret
-	
-def Clogin(request):
-	print "view:Clogin"
-	rc={'val':0, 'response':"Success"}
-	if request.user.is_authenticated():
-		print "already logged in"
-		# Redirect to a success page.
-		args = util.populatecreatepage(request.user)
-		return render_to_response('create.html', args)
-	#Are we getting here from the login page?
-	if request.POST.has_key('userName'):
-		print "has userName entered"
-		username = request.POST['userName']
-		password = request.POST['password']
-		user = authenticate(username=username, password=password)
-		if user is not None:
-			if user.is_active:
-				print "user is active"
-				login(request, user)
-				# Redirect to a success page.
-				args = util.populatecreatepage(user)
-				return render_to_response('create.html', args)
-				
-			else:
-				rc={'val':1, 'response':"This account is not active"}
-				# Return a 'disabled account' error message
-		else:
-			# Return an 'invalid login' error message.
-			print "invalid login error"
-			rc={'val':1, 'response':"invalid login error"}
-	return render_to_response('registration/login.html', {'response':rc['response']})
-
-def validate(request):
-	print "views:validate"
-	code = request.POST.get('code', '-1')
-	if len(code) == 0:
-		code = '0'
-	
-	userlist = User.objects.filter(username=request.user.username)
-	
-	if len(userlist) != 1:
-		args = util.populatecreatepage(request.user)
-		args['response'] = "we have a problem: not 1 user with this username"
-		return render_to_response('create.html', args)
-	
-	profile = userlist[0].get_profile()
-	if not code.isdigit() or profile.secret != int(code):
-		print 'wrong code'
-		args = util.populatecreatepage(request.user)
-		args['response'] = "wrong code"
-	else:
-		profile.verified = True
-		profile.save()
-		args = util.populatecreatepage(request.user)
-		args['response'] = "Successfully validated phone number"
-		
-	return render_to_response('create.html', args)
-
-def createaccount(request):
-	print "view:createaccount"
-	rc={'val':0, 'response':"Success"}
-	username = request.POST.get('userName', '')
-	password = request.POST.get('password', '')
-	confirmpassword = request.POST.get('confirmpassword', '')
-	email = request.POST.get('email', '')
-	phone_number1 = request.POST.get('phone_number1', '')
-	phone_number2 = request.POST.get('phone_number2', '')
-	phone_number3 = request.POST.get('phone_number3', '')
-	phone_number = phone_number1+"-"+phone_number2+"-"+phone_number3
-	first_name = request.POST.get('first_name', '')
-	last_name = request.POST.get('last_name', '')
-
-
-	#error checking
-	if len(username) < 1:
-		response = "Must enter a username"
-		rc={'val':1, 'response':response}
-	
-	elif not validate_phone(phone_number):
-		response = "Must enter a phone number"
-		rc={'val':1, 'response':response}
-
-	elif len(password) < 1:
-		response = "Must enter a password"
-		rc={'val':1, 'response':response}
-
-	elif len(password) < 1:
-		response = "Must enter a password"
-		rc={'val':1, 'response':response}
-
-	elif password != confirmpassword:
-		response = "Passwords do not match"
-		rc={'val':1, 'response':response}
-
-	#finally hit DB to see if we can use this name
-	elif len(User.objects.filter(username=username)) > 0:
-		print User.objects.filter(username=username)
-		response = "User name already exists"
-		rc={'val':1, 'response':response}
-
-	#dummy up a CUser for the final CUser checking
-	now = datetime.now()
-	secret = int(random()*100000)
-	testresults = CUser(phone_number=phone_number, date_last_used=now, 
-			verified=False, clients=1, 
-			secret=secret).validate()
-	#get rid of the user which we expect won't be found
-	testresults.pop('user')
-	if testresults:
-		rc['val'] = 1
-		response = testresults.popitem()
-
-	if rc['val']:
-		return render_to_response('registration/login.html', {'response':response})
-	else:
-		#We are good to create a new user
-		user = User.objects.create_user(username, email, password)
-		user.first_name = first_name
-		user.last_name = last_name
-		my_CUser = CUser(user=user, phone_number=phone_number, 
-						clients=1, date_last_used=now, secret=secret, 
-						verified=False)
-		my_CUser.save()
-		user = authenticate(username=username, password=password)
-		login(request, user)
-
-		receiver = phone_number.replace('-', '') + "@txt.att.net"
-		subject = "confirmation of account"
-		message = "type in this number on the site: "+ str(secret)
-		sender = "roderic@gmail.com"
-		util.sendMail(sender, receiver, subject, message)
-		args = util.populatecreatepage(user)
-		
-		return render_to_response('create.html', args)
-
-@login_required
-def change_password_view(request):
-	print "view:change_password_view"
-	change_password()
-	args = util.populatecreatepage(request.user)
-	return render_to_response('create.html', args)
-@login_required
-def logout_view(request):
-	print "view:logout_view"
-	logout(request)
-	return HttpResponseRedirect('/accounts/login/')
-
-@login_required
-def create(request):
-	print "view:create"
-	args = util.populatecreatepage(request.user)
+	logging.warn("start")
 	user = request.user
-	return render_to_response('create.html', args)
-						
-def validate_phone(phone_number):
-	return len(phone_number) > 0
+	if user.is_authenticated():
+		logging.warn("authenticated")
+		if user in dir(user):
+			ret = HttpResponseRedirect('/callme/create/')
+		else:
+			return render_to_response(request, 'createprofile.html', {'number':123})#args)
+			#ret = HttpresponseRedirect('callme/createaccount/')
+	else:
+		logging.warn("not authenticated")
+		ret =  HttpResponseRedirect('/account/register/')
+	return ret
 
-def validate_email(email):
-	return len(email) > 0
+def createprofile(request):
+	logging.warning('entering createprofile')
+	templatepage = 'createprofile.html'
+	args = {}
+	post = request.POST
 
+	#if phone number entered
+	if post.has_key('phone_number1') and post.has_key('phone_number2') and post.has_key('phone_number3'):
+		#create profile and send the code
+		p1 = request.POST.get('phone_number1', '')
+		p2 = request.POST.get('phone_number2', '')
+		p3 = request.POST.get('phone_number3', '')
+		phone_number = p1+"-"+p2+"-"+p3
+		logging.warning('phone number posted')
+		logging.warning(phone_number)
+
+		now = datetime.now()
+		secret = int(random()*100000)
+		userProfile = CUser(phone_number=phone_number, date_last_used=now,
+			verified=False, clients=1, secret=secret)
+		
+		#if there are test results then something is wrong, need to send that
+		#otherwise profile looks good so far, we can send the sms
+		logging.warn("testing user")
+		if not userProfile.validate():
+			args['val'] = 1
+			args['response'] = "error in input"# userProfile.popitem()
+			logging.error('error in validation of phone number')
+
+		else:
+			logging.warn("saving user")
+			user = request.user
+			userProfile = CUser(user=user, phone_number=phone_number, date_last_used=now,
+			verified=False, clients=1, secret=secret)
+			userProfile.save()
+			#request.user.user = userProfile
+			request.user.save()
+			num = phone_number.replace('-', '')+"@txt.att.net"
+			subject = "Validation"
+			message = "Please type in " + str(secret) + " at the site"
+			#callmeutil.sendMail('hollrin@gmail.com', num, subject, message)
+			args['val'] = 0
+			args['numbersent'] = True
+			logging.warning('looks good, sent email')
+			if not request.user.get_profile():
+				logging.error("Not get_profile()")
+				request.user.get_profile()
+				
+
+	elif post.has_key('code'):
+		#see if it is the correct code
+		code = request.POST.get('code', '')
+		logging.warn("has key: Comparing " + code + " and  " + str(request.user.get_profile().secret))
+		if str(request.user.get_profile().secret) == str(code):
+			logging.warn("codes match")
+			request.user.get_profile().verified = True
+			templatepage = 'create.html'
+		else:
+			logging.warn("codes do not match")
+			args['numbersent'] = True
+	args.update(callmeutil.populatecreatepage(request.user))
+		
+	logging.warning('ending and going to ' + templatepage)
+	#for i in args:
+		#logging.warning(i+": " +str(args[i]))
+	#return render_to_response(args, 'createprofile.html' )
+	return render_to_response(request, templatepage, args)
+		
 def newaction(request):
-	print "view:newaction"
+	logging.warn("new request")
+	templatepage = 'create.html'
+	args = {}
 	rc={'val':0, 'response':'success'}
 	months_map = {'january':1, 'february':2, 'march':3, 'april':4, 'may':5, 'june':6, 'july':7, 'august':8, 'september':9, 'october':10, 'november':11, 'december':12}
 	
@@ -205,8 +122,8 @@ def newaction(request):
 		
 	date = datetime(year=int(year), month=int(month), day=int(day), hour=int(hour), minute=int(minute), second=0)
 	now = datetime.now()
-	print "date: "+str(date)
-	print "now: "+str(now)
+	logging.warn( "date: "+str(date))
+	logging.warn("now: "+str(now))
 			
 	email = request.POST.get('email', '')
 	phone_number = request.POST.get('phone_number', '')
@@ -226,19 +143,46 @@ def newaction(request):
 		#rc={'val':1, 'response':response}
 
 	if rc['val'] == 1:
-		args = util.populatecreatepage(request.user)
+		args = callmeutil.populatecreatepage(request.user)
 		rc.update(args)
+		logging.warn("fail to create: "+rc['response'])
 		return render_to_response('create.html', rc)
 		
 	#Find the user if he exists
-	list = CUser.objects.filter(phone_number=phone_number)
+	#list = CUser.objects.filter(phone_number=phone_number)
 		
 	#create the action
-	print "creating the action"
+	logging.warn( "creating the action")
 	message = "You need to call "+ middle + phone_number + " now"
-	request.user.get_profile().caction_set.create(phone_number=phone_number, message=message, date_created=now, date_to_be_executed=date, date_finished=now, finished = False)
-	#print user.action_set.all()
-	print "done"
+	action = CAction()
+	if users.get_current_user():
+		action.sender = users.get_current_user()
 
-	args = util.populatecreatepage(request.user)
-	return render_to_response('create.html', args)
+	action.phone_number = phone_number
+	action.message = message
+	action.date_to_be_executed = date
+	action.date_created = now
+	action.date_finished = now
+	action.finished = False
+	action.put()
+
+	#request.user.get_profile().caction_set.create(phone_number=phone_number, message=message, date_created=now, date_to_be_executed=date, date_finished=now, finished = False)
+	#print user.action_set.all()
+	logging.warn( "done")
+
+	args.update(callmeutil.populatecreatepage(request.user))
+	return render_to_response(request, templatepage, args)
+
+def create(request):
+	logging.warning( "create")
+	for action in dir(request.user):
+		logging.warn( action)
+	print request.user.get_profile()
+	return HttpResponseRedirect('/account/register/')
+	
+def validate_phone(phone_number):
+	return len(phone_number) > 0
+
+def validate_email(email):
+	return len(email) > 0
+

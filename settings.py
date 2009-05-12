@@ -1,87 +1,88 @@
-# Django settings for rodericj_com project.
+# -*- coding: utf-8 -*-
+from ragendja.settings_pre import *
 
-DEBUG = True
-TEMPLATE_DEBUG = DEBUG
-
-ADMINS = (
-    # ('Your Name', 'your_email@domain.com'),
-)
-
-MANAGERS = ADMINS
-
-DATABASE_ENGINE = 'sqlite3'           # 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'ado_mssql'.
-DATABASE_NAME = '/Users/roderic/dev/sqlite3.db'             # Or path to database file if using sqlite3.
-DATABASE_USER = ''             # Not used with sqlite3.
-DATABASE_PASSWORD = ''         # Not used with sqlite3.
-DATABASE_HOST = ''             # Set to empty string for localhost. Not used with sqlite3.
-DATABASE_PORT = ''             # Set to empty string for default. Not used with sqlite3.
-
-# Local time zone for this installation. Choices can be found here:
-# http://www.postgresql.org/docs/8.1/static/datetime-keywords.html#DATETIME-TIMEZONE-SET-TABLE
-# although not all variations may be possible on all operating systems.
-# If running in a Windows environment this must be set to the same as your
-# system time zone.
-TIME_ZONE = 'America/Los_Angeles'
-
-# Language code for this installation. All choices can be found here:
-# http://www.w3.org/TR/REC-html40/struct/dirlang.html#langcodes
-# http://blogs.law.harvard.edu/tech/stories/storyReader$15
-LANGUAGE_CODE = 'en-us'
-
-LOGIN_URL = '/callme/login'
-
-SITE_ID = 1
-
-# If you set this to False, Django will make some optimizations so as not
-# to load the internationalization machinery.
-USE_I18N = True
-
-# Absolute path to the directory that holds media.
-# Example: "/home/media/media.lawrence.com/"
-MEDIA_ROOT = ''
-
-# URL that handles the media served from MEDIA_ROOT.
-# Example: "http://media.lawrence.com"
-MEDIA_URL = ''
-
-# URL prefix for admin media -- CSS, JavaScript and images. Make sure to use a
-# trailing slash.
-# Examples: "http://foo.com/media/", "/media/".
-ADMIN_MEDIA_PREFIX = '/media/'
+# Increase this when you update your media on the production site, so users
+# don't have to refresh their cache. By setting this your MEDIA_URL
+# automatically becomes /media/MEDIA_VERSION/
+MEDIA_VERSION = 1
 
 # Make this unique, and don't share it with anybody.
-SECRET_KEY = '=cflufkxk^27c9)e36bc*w%o1odg%v4xmj9*%ry38f)x$)&!ud'
+SECRET_KEY = '1234567890'
 
-# List of callables that know how to import templates from various sources.
-TEMPLATE_LOADERS = (
-    'django.template.loaders.filesystem.load_template_source',
-    'django.template.loaders.app_directories.load_template_source',
-#     'django.template.loaders.eggs.load_template_source',
+#ENABLE_PROFILER = True
+#ONLY_FORCED_PROFILE = True
+#PROFILE_PERCENTAGE = 25
+#SORT_PROFILE_RESULTS_BY = 'cumulative' # default is 'time'
+#PROFILE_PATTERN = 'ext.db..+\((?:get|get_by_key_name|fetch|count|put)\)'
+
+# Enable I18N and set default language to 'en'
+USE_I18N = True
+LANGUAGE_CODE = 'en'
+
+#Restrict supported languages (and JS media generation)
+#LANGUAGES = (
+#    ('de', 'German'),
+#    ('en', 'English'),
+#)
+
+TEMPLATE_CONTEXT_PROCESSORS = (
+    'django.core.context_processors.auth',
+    'django.core.context_processors.media',
+    'django.core.context_processors.request',
+    'django.core.context_processors.i18n',
 )
 
 MIDDLEWARE_CLASSES = (
-    'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    # Django authentication
     'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'django.middleware.doc.XViewMiddleware',
+    # Google authentication
+    #'ragendja.auth.middleware.GoogleAuthenticationMiddleware',
+    # Hybrid Django/Google authentication
+    #'ragendja.auth.middleware.HybridAuthenticationMiddleware',
+    'django.middleware.common.CommonMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
+    'ragendja.sites.dynamicsite.DynamicSiteIDMiddleware',
+    'django.contrib.flatpages.middleware.FlatpageFallbackMiddleware',
+    'django.contrib.redirects.middleware.RedirectFallbackMiddleware',
 )
 
-ROOT_URLCONF = 'rodericj_com.urls'
+# Google authentication
+#AUTH_USER_MODULE = 'ragendja.auth.google_models'
+#AUTH_ADMIN_MODULE = 'ragendja.auth.google_admin'
+# Hybrid Django/Google authentication
+#AUTH_USER_MODULE = 'ragendja.auth.hybrid_models'
+AUTH_PROFILE_MODULE = 'callme.CUser'
 
-TEMPLATE_DIRS = (
-    # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
-    # Always use forward slashes, even on Windows.
-    # Don't forget to use absolute paths, not relative paths.
-	'/Users/roderic/dev/rodericj_com/callme/templates',
+GLOBALTAGS = (
+    'ragendja.templatetags.ragendjatags',
+    'django.templatetags.i18n',
 )
+
+LOGIN_URL = '/account/login/'
+LOGOUT_URL = '/account/logout/'
+LOGIN_REDIRECT_URL = '/'
 
 INSTALLED_APPS = (
     'django.contrib.auth',
-    'django.contrib.contenttypes',
     'django.contrib.sessions',
+    'django.contrib.admin',
+    'django.contrib.webdesign',
+    'django.contrib.flatpages',
+    'django.contrib.redirects',
     'django.contrib.sites',
-	'rodericj_com.callme',
-	'django.contrib.admin',
+    'appenginepatcher',
+	'callme',
+    'registration',
+    'mediautils',
 )
 
-AUTH_PROFILE_MODULE='callme.CUser'
+# List apps which should be left out from app settings and urlsauto loading
+IGNORE_APP_SETTINGS = IGNORE_APP_URLSAUTO = (
+    # Example:
+    # 'django.contrib.admin',
+    # 'django.contrib.auth',
+    # 'yetanotherapp',
+)
+
+from ragendja.settings_post import *

@@ -1,18 +1,30 @@
 import datetime
-from django.db import models
+import re
+from google.appengine.ext import db
 from django.contrib.auth.models import User
 
 # Create your models here.
-class CUser(models.Model):
-	user = models.ForeignKey(User, unique=True)
-	phone_number = models.PhoneNumberField(unique=True)
-	clients = models.CommaSeparatedIntegerField(maxlength=10)
-	date_last_used = models.DateTimeField('date used')
-	secret = models.IntegerField()
-	verified = models.BooleanField()
+class CUser(db.Model):
+	#unique
+	user = db.ReferenceProperty(User)
+	#unique
+	phone_number = db.PhoneNumberProperty()
+	#clients = db.ListProperty(str)
+	date_last_used = db.DateTimeProperty('date used')
+	secret = db.IntegerProperty()
+	verified = db.BooleanProperty()
 
 	class Admin:
 		pass
+
+	def validate(self):
+		ret = True
+
+		#validate the phone number is the appropriate format
+		pnre = re.compile("[0-9]{3}-[0-9]{3}-[0-9]{4}")
+		if not pnre.match(self.phone_number):
+			ret = False	
+		return ret
 
 	def __str__(self):
 		ret = self.user.username + " "
@@ -21,14 +33,15 @@ class CUser(models.Model):
 		#ret += self.last_name + " "
 		return ret
 
-class CAction(models.Model):
-	sender = models.ForeignKey(CUser)
-	phone_number = models.PhoneNumberField()
-	message = models.IntegerField() #This will be in a template. Referenced to save space
-	date_created = models.DateTimeField('date published')
-	date_finished = models.DateTimeField('date finished')
-	date_to_be_executed = models.DateTimeField('date to be executed')
-	finished = models.BooleanField()
+class CAction(db.Model):
+	#sender = db.ReferenceProperty(CUser)
+	sender = db.UserProperty()
+	phone_number = db.PhoneNumberProperty()
+	message = db.IntegerProperty() #This will be in a template. Referenced to save space
+	date_created = db.DateTimeProperty('date published')
+	date_finished = db.DateTimeProperty('date finished')
+	date_to_be_executed = db.DateTimeProperty('date to be executed')
+	finished = db.BooleanProperty()
 
 	class Meta:
 		ordering = ('date_to_be_executed', 'date_created', 'date_finished')
@@ -40,3 +53,4 @@ class CAction(models.Model):
 		ret += " \nat: " +str(self.date_to_be_executed)
 		ret += self.finished and " is finished" or " is not finished"
 		return ret
+

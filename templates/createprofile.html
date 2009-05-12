@@ -1,0 +1,29 @@
+<font color=red>{{args.response}}</font>
+{% if numbersent %}
+<h1>Validate yourself</h1>
+
+<form action="/callme/createprofile/" method="post">
+	Code: <input type="text" name="code"><br>
+	<input type="submit" value="submit" maxlength=10><br>
+</form>
+
+<form action="/callme/createprofile/" method="post">
+	<input type="submit" value="send again" maxlength=10><br>
+</form>
+{% else %}
+<h1>Enter your Phone Number</h1>
+{{numbersent}}
+<font color=red> {{response}}</font>
+<form action="/callme/createprofile/" method="post">
+	Phone Number: (<input type="text" name="phone_number1" size=3 maxlength=3>)
+		<input type="text" name="phone_number2" size=3 maxlength=3>
+		<input type="text" name="phone_number3" size=4 maxlength=4><br>
+		<input type="submit" value="submit" maxlength=10><br>
+{% endif %}
+<H2>User Info</H2>
+name: {{user.username}}<br>
+number:{{number}}<br>
+number:{{profile.phone_number}}<br>
+secret:{{profile.secret}}<br>
+<a href="/callme/logout">logout</a>
+<a href="/callme/change_password">change password</a>
