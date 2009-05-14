@@ -29,6 +29,20 @@ def start(request):
 		ret =  HttpResponseRedirect('/account/register/')
 	return ret
 
+def sendConfirmation(user, phone_number):
+	num = phone_number.replace('-', '')+"@txt.att.net"
+	subject = "Validation"
+	message = "Please type in " + str(user.secret) + " at the site"
+	callmeutil.sendMail('hollrin@gmail.com', num, subject, message)
+	
+def resend(request):
+	logging.debug('resending the phone number')
+	user = request.user.get_profile()
+	sendConfirmation(user, user.phone_number)
+	args = callmeutil.populatecreatepage(request.user)
+	args['numbersent'] = True
+	return render_to_response(request, 'createprofile.html', args)
+
 def createprofile(request):
 	logging.debug('entering createprofile')
 	templatepage = 'createprofile.html'
@@ -66,10 +80,7 @@ def createprofile(request):
 			userProfile.save()
 			#request.user.user = userProfile
 			request.user.save()
-			num = phone_number.replace('-', '')+"@txt.att.net"
-			subject = "Validation"
-			message = "Please type in " + str(secret) + " at the site"
-			callmeutil.sendMail('hollrin@gmail.com', num, subject, message)
+			sendConfirmation(userProfile, phone_number)
 			args['val'] = 0
 			args['numbersent'] = True
 			logging.debug('looks good, sent email')
