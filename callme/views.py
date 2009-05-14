@@ -153,10 +153,9 @@ def newaction(request):
 		#response = "invalid email"
 		#rc={'val':1, 'response':response}
 		
-	#TODO this is for testing purposes. Need to uncomment this when it goes live
-	#elif date < datetime.now():
-		#response = "date is before now"
-		#rc={'val':1, 'response':response}
+	elif date < datetime.now():
+		response = "date is before now"
+		rc={'val':1, 'response':response}
 
 	if rc['val'] == 1:
 		args = callmeutil.populatecreatepage(request.user)
@@ -180,6 +179,7 @@ def newaction(request):
 	action.date_created = now
 	action.date_finished = now
 	action.finished = False
+	action.sender = request.user.get_profile()
 	action.put()
 
 	#request.user.get_profile().caction_set.create(phone_number=phone_number, message=message, date_created=now, date_to_be_executed=date, date_finished=now, finished = False)
@@ -203,3 +203,15 @@ def validate_phone(phone_number):
 def validate_email(email):
 	return len(email) > 0
 
+def cron(request):
+		logging.debug("entering cron")
+		q = CAction.all()
+		q1 = q.filter('date_to_be_executed <', datetime.now())
+		q2 = q1.filter('finished =', False)
+		results = q2.fetch(1000)
+		for i in results:
+			#i.perform()
+			callmeutil.sendMail(i.sender.phone_number, i.sender.phone_number.replace('-','')+"@txt.att.net", 'Call Reminder', i.phone_number)
+			i.finished = True
+			i.save()
+		return HttpResponseRedirect('/')

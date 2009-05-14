@@ -1,4 +1,6 @@
 import datetime
+import logging
+from callme import callmeutil
 import re
 from google.appengine.ext import db
 from django.contrib.auth.models import User
@@ -35,7 +37,7 @@ class CUser(db.Model):
 
 class CAction(db.Model):
 	#sender = db.ReferenceProperty(CUser)
-	sender = db.UserProperty()
+	sender = db.ReferenceProperty(CUser)
 	phone_number = db.PhoneNumberProperty()
 	message = db.IntegerProperty() #This will be in a template. Referenced to save space
 	date_created = db.DateTimeProperty('date published')
@@ -45,8 +47,10 @@ class CAction(db.Model):
 
 	class Meta:
 		ordering = ('date_to_be_executed', 'date_created', 'date_finished')
+
 	class Admin:
 		pass
+
 	def __str__(self):
 		ret = "message: "+ str(self.message)
 		ret += " \nto: " + str(self.phone_number)

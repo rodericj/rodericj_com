@@ -11,3 +11,7 @@ handlers:
 
 - url: /.*
   script: common/appenginepatch/main.py
+
+- url: /callme/cron
+  script: cron.py
+  login: admin
