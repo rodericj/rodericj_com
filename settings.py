@@ -86,3 +86,6 @@ IGNORE_APP_SETTINGS = IGNORE_APP_URLSAUTO = (
 )
 
 from ragendja.settings_post import *
+
+SERVER_EMAIL='roderic@gmail.com'
+DEFAULT_FROM_EMAIL='roderic@gmail.com'

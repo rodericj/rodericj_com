@@ -15,22 +15,22 @@ from google.appengine.api import users
 from ragendja.template import render_to_response
 
 def start(request):
-	logging.warn("start")
+	logging.debug("start")
 	user = request.user
 	if user.is_authenticated():
-		logging.warn("authenticated")
+		logging.debug("authenticated")
 		if user in dir(user):
 			ret = HttpResponseRedirect('/callme/create/')
 		else:
 			return render_to_response(request, 'createprofile.html', {'number':123})#args)
 			#ret = HttpresponseRedirect('callme/createaccount/')
 	else:
-		logging.warn("not authenticated")
+		logging.debug("not authenticated")
 		ret =  HttpResponseRedirect('/account/register/')
 	return ret
 
 def createprofile(request):
-	logging.warning('entering createprofile')
+	logging.debug('entering createprofile')
 	templatepage = 'createprofile.html'
 	args = {}
 	post = request.POST
@@ -42,8 +42,8 @@ def createprofile(request):
 		p2 = request.POST.get('phone_number2', '')
 		p3 = request.POST.get('phone_number3', '')
 		phone_number = p1+"-"+p2+"-"+p3
-		logging.warning('phone number posted')
-		logging.warning(phone_number)
+		logging.debug('phone number posted')
+		logging.debug(phone_number)
 
 		now = datetime.now()
 		secret = int(random()*100000)
@@ -52,14 +52,14 @@ def createprofile(request):
 		
 		#if there are test results then something is wrong, need to send that
 		#otherwise profile looks good so far, we can send the sms
-		logging.warn("testing user")
+		logging.debug("testing user")
 		if not userProfile.validate():
 			args['val'] = 1
 			args['response'] = "error in input"# userProfile.popitem()
 			logging.error('error in validation of phone number')
 
 		else:
-			logging.warn("saving user")
+			logging.debug("saving user")
 			user = request.user
 			userProfile = CUser(user=user, phone_number=phone_number, date_last_used=now,
 			verified=False, clients=1, secret=secret)
@@ -69,10 +69,10 @@ def createprofile(request):
 			num = phone_number.replace('-', '')+"@txt.att.net"
 			subject = "Validation"
 			message = "Please type in " + str(secret) + " at the site"
-			#callmeutil.sendMail('hollrin@gmail.com', num, subject, message)
+			callmeutil.sendMail('hollrin@gmail.com', num, subject, message)
 			args['val'] = 0
 			args['numbersent'] = True
-			logging.warning('looks good, sent email')
+			logging.debug('looks good, sent email')
 			if not request.user.get_profile():
 				logging.error("Not get_profile()")
 				request.user.get_profile()
@@ -81,19 +81,19 @@ def createprofile(request):
 	elif post.has_key('code'):
 		#see if it is the correct code
 		code = request.POST.get('code', '')
-		logging.warn("has key: Comparing " + code + " and  " + str(request.user.get_profile().secret))
+		logging.debug("has key: Comparing " + code + " and  " + str(request.user.get_profile().secret))
 		if str(request.user.get_profile().secret) == str(code):
-			logging.warn("codes match")
+			logging.debug("codes match")
 			request.user.get_profile().verified = True
 			templatepage = 'create.html'
 		else:
-			logging.warn("codes do not match")
+			logging.debug("codes do not match")
 			args['numbersent'] = True
 	args.update(callmeutil.populatecreatepage(request.user))
 		
-	logging.warning('ending and going to ' + templatepage)
+	logging.debug('ending and going to ' + templatepage)
 	#for i in args:
-		#logging.warning(i+": " +str(args[i]))
+		#logging.debug(i+": " +str(args[i]))
 	#return render_to_response(args, 'createprofile.html' )
 	return render_to_response(request, templatepage, args)
 		
@@ -106,7 +106,7 @@ def logout_view(request):
 
 @login_required
 def newaction(request):
-	logging.warn("new request")
+	logging.debug("new request")
 	templatepage = 'create.html'
 	args = {}
 	rc={'val':0, 'response':'success'}
@@ -127,8 +127,8 @@ def newaction(request):
 		
 	date = datetime(year=int(year), month=int(month), day=int(day), hour=int(hour), minute=int(minute), second=0)
 	now = datetime.now()
-	logging.warn( "date: "+str(date))
-	logging.warn("now: "+str(now))
+	logging.debug( "date: "+str(date))
+	logging.debug("now: "+str(now))
 			
 	email = request.POST.get('email', '')
 	phone_number = request.POST.get('phone_number', '')
@@ -150,14 +150,14 @@ def newaction(request):
 	if rc['val'] == 1:
 		args = callmeutil.populatecreatepage(request.user)
 		rc.update(args)
-		logging.warn("fail to create: "+rc['response'])
+		logging.debug("fail to create: "+rc['response'])
 		return render_to_response('create.html', rc)
 		
 	#Find the user if he exists
 	#list = CUser.objects.filter(phone_number=phone_number)
 		
 	#create the action
-	logging.warn( "creating the action")
+	logging.debug( "creating the action")
 	message = "You need to call "+ phone_number 
 	action = CAction()
 	if users.get_current_user():
@@ -173,16 +173,16 @@ def newaction(request):
 
 	#request.user.get_profile().caction_set.create(phone_number=phone_number, message=message, date_created=now, date_to_be_executed=date, date_finished=now, finished = False)
 	#print user.action_set.all()
-	logging.warn( "done")
+	logging.debug( "done")
 
 	args.update(callmeutil.populatecreatepage(request.user))
 	return render_to_response(request, templatepage, args)
 
 @login_required
 def create(request):
-	logging.warning( "create")
+	logging.debug( "create")
 	for action in dir(request.user):
-		logging.warn( action)
+		logging.debug( action)
 	print request.user.get_profile()
 	return HttpResponseRedirect('/account/register/')
 	

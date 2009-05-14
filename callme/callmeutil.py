@@ -1,4 +1,6 @@
 from datetime import datetime
+from django.conf import settings
+
 class util:
 	pass
 
@@ -6,16 +8,19 @@ def sendMail(sender, receiver, subject, message):
 	from email.MIMEText import MIMEText
 	import smtplib,sys
 
-	msg = MIMEText(message)
-	msg['From'] = sender
-	msg['To'] = receiver
-	msg['Subject'] = subject
-	server = smtplib.SMTP("smtp.gmail.com", 587)
-	server.ehlo()
-	server.starttls()
-	server.ehlo()
-	server.login('hollrin', 'ThlE1I8X')
-	server.sendmail(sender, receiver, msg.as_string())
+	from django.core.mail import send_mail
+
+	send_mail(subject, message, settings.DEFAULT_FROM_EMAIL, [receiver])
+	#msg = MIMEText(message)
+	#msg['From'] = sender
+	#msg['To'] = receiver
+	#msg['Subject'] = subject
+	#server = smtplib.SMTP("smtp.gmail.com", 587)
+	#server.ehlo()
+	#server.starttls()
+	#server.ehlo()
+	#server.login('hollrin', 'ThlE1I8X')
+	#server.sendmail(sender, receiver, msg.as_string())
 def populatecreatepage(user):
 		hours = range(1,13)
 		minutes = ["00", "15", "30", "45"]
