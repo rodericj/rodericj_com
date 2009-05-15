@@ -24,7 +24,6 @@ def sendMail(sender, receiver, subject, message):
 def populatecreatepage(user):
 		hours = range(1,13)
 		minutes = ["00", "15", "30", "45"]
-		minutes = range(60)
 		days = range(1,32)
 		ampm = ['am', 'pm']
 		months = ['january', 'february', 'march', 'april',

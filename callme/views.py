@@ -136,10 +136,16 @@ def newaction(request):
 	month = request.POST['month']
 	month = months_map[month]
 		
-	date = datetime(year=int(year), month=int(month), day=int(day), hour=int(hour), minute=int(minute), second=0)
+	date = None
+	try:
+		date = datetime(year=int(year), month=int(month), 
+						day=int(day), hour=int(hour), 
+						minute=int(minute), second=0)
+	except ValueError:
+		response = "invalid date, please try another"
+		rc = {'val':1, 'response':response}
+
 	now = datetime.now()
-	logging.debug( "date: "+str(date))
-	logging.debug("now: "+str(now))
 			
 	email = request.POST.get('email', '')
 	phone_number = request.POST.get('phone_number', '')
@@ -153,15 +159,15 @@ def newaction(request):
 		#response = "invalid email"
 		#rc={'val':1, 'response':response}
 		
-	elif date < datetime.now():
+	elif date and date < datetime.now():
 		response = "date is before now"
 		rc={'val':1, 'response':response}
 
-	if rc['val'] == 1:
+	if rc['val'] != 0:
 		args = callmeutil.populatecreatepage(request.user)
 		rc.update(args)
 		logging.debug("fail to create: "+rc['response'])
-		return render_to_response('create.html', rc)
+		return render_to_response(request, 'create.html', rc)
 		
 	#Find the user if he exists
 	#list = CUser.objects.filter(phone_number=phone_number)
