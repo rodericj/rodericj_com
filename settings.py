@@ -84,7 +84,7 @@ IGNORE_APP_SETTINGS = IGNORE_APP_URLSAUTO = (
     # 'django.contrib.auth',
     # 'yetanotherapp',
 )
-
+TIME_ZONE='America/Los Angeles'
 from ragendja.settings_post import *
 
 SERVER_EMAIL='roderic@gmail.com'

@@ -40,6 +40,7 @@ class CAction(db.Model):
 	sender = db.ReferenceProperty(CUser)
 	phone_number = db.PhoneNumberProperty()
 	message = db.IntegerProperty() #This will be in a template. Referenced to save space
+	memo = db.TextProperty() #a note about the thing
 	date_created = db.DateTimeProperty('date published')
 	date_finished = db.DateTimeProperty('date finished')
 	date_to_be_executed = db.DateTimeProperty('date to be executed')

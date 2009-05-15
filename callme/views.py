@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 import logging
-from datetime import datetime
+from datetime import datetime, timedelta
 from callme import callmeutil
 from random import random
 from callme.models import CUser, CAction
@@ -19,11 +19,12 @@ def start(request):
 	user = request.user
 	if user.is_authenticated():
 		logging.debug("authenticated")
-		if user in dir(user):
-			ret = HttpResponseRedirect('/callme/create/')
+		if user.get_profile():
+			logging.debug("there is a profile")
+			ret =  render_to_response(request, 'create.html', callmeutil.populatecreatepage(request.user))
 		else:
-			return render_to_response(request, 'createprofile.html', {})
-			#ret = HttpresponseRedirect('callme/createaccount/')
+			logging.debug("there is no profile")
+			ret = render_to_response(request, 'createprofile.html', {})
 	else:
 		logging.debug("not authenticated")
 		ret =  HttpResponseRedirect('/account/register/')
@@ -35,6 +36,7 @@ def sendConfirmation(user, phone_number):
 	message = "Please type in " + str(user.secret) + " at the site"
 	callmeutil.sendMail('hollrin@gmail.com', num, subject, message)
 	
+@login_required
 def resend(request):
 	logging.debug('resending the phone number')
 	user = request.user.get_profile()
@@ -43,22 +45,26 @@ def resend(request):
 	rc['numbersent'] = True
 	return render_to_response(request, 'createprofile.html', rc)
 
+def extractPhoneNumber(thePost):
+		p1 = thePost.get('phone_number1', '')
+		p2 = thePost.get('phone_number2', '')
+		p3 = thePost.get('phone_number3', '')
+		return p1+"-"+p2+"-"+p3
+	
+@login_required
 def createprofile(request):
 	logging.debug('entering createprofile')
 	templatepage = 'createprofile.html'
 	rc = {}
+	rc.update(callmeutil.populatecreatepage(request.user))
 	post = request.POST
 
-	#if phone number entered
-	if post.has_key('phone_number1') and post.has_key('phone_number2') and post.has_key('phone_number3'):
-		#create profile and send the code
-		p1 = request.POST.get('phone_number1', '')
-		p2 = request.POST.get('phone_number2', '')
-		p3 = request.POST.get('phone_number3', '')
-		phone_number = p1+"-"+p2+"-"+p3
-		logging.debug('phone number posted')
-		logging.debug(phone_number)
+	if request.user.get_profile():
+		logging.warn("We DO NOT want to create the new user")
 
+	#if phone number entered then we set up the new CUser
+	if post.has_key('phone_number1') and post.has_key('phone_number2') and post.has_key('phone_number3'):
+		phone_number = extractPhoneNumber(post)
 		now = datetime.now()
 		secret = int(random()*100000)
 		userProfile = CUser(phone_number=phone_number, date_last_used=now,
@@ -66,43 +72,34 @@ def createprofile(request):
 		
 		#if there are test results then something is wrong, need to send that
 		#otherwise profile looks good so far, we can send the sms
-		logging.debug("testing user")
 		if not userProfile.validate():
 			rc['val'] = 1
 			rc['response'] = "error in input"# userProfile.popitem()
 			logging.error('error in validation of phone number')
 
 		else:
-			logging.debug("saving user")
 			user = request.user
 			userProfile = CUser(user=user, phone_number=phone_number, date_last_used=now,
 			verified=False, clients=1, secret=secret)
 			userProfile.save()
-			#request.user.user = userProfile
-			request.user.save()
+			#user.save()
+			request.user = user
 			sendConfirmation(userProfile, phone_number)
 			rc['val'] = 0
 			rc['numbersent'] = True
-			logging.debug('looks good, sent email')
-			if not request.user.get_profile():
-				logging.error("Not get_profile()")
-				request.user.get_profile()
-				
+			rc['profile'] = userProfile
 
 	elif post.has_key('code'):
 		#see if it is the correct code
-		code = request.POST.get('code', '')
-		logging.debug("has key: Comparing " + code + " and  " + str(request.user.get_profile().secret))
+		code = post.get('code', '')
 		if str(request.user.get_profile().secret) == str(code):
-			logging.debug("codes match")
-			request.user.get_profile().verified = True
+			user = request.user.get_profile()
+			user.verified = True
+			user.save()
 			templatepage = 'create.html'
 		else:
-			logging.debug("codes do not match")
 			rc['numbersent'] = True
-	rc.update(callmeutil.populatecreatepage(request.user))
 		
-	logging.debug('ending and going to ' + templatepage)
 	return render_to_response(request, templatepage, rc)
 		
 @login_required
@@ -120,18 +117,21 @@ def newaction(request):
 	months_map = {'january':1, 'february':2, 'march':3, 'april':4, 'may':5, 'june':6, 'july':7, 'august':8, 'september':9, 'october':10, 'november':11, 'december':12}
 	
 	#validate
-	name = request.POST.get('name', '')
-	hour = request.POST.get('hour', '')
-	minute = request.POST.get('minute', '')
-	day = request.POST.get('day', '')
-	ampm = request.POST.get('ampm', '')
-	year = request.POST.get('year', '')
+	post = request.POST
+	name = post.get('name', '')
+	hour = post.get('hour', '')
+	minute = post.get('minute', '')
+	day = post.get('day', '')
+	ampm = post.get('ampm', '')
+	year = post.get('year', '')
 
 	#adjustments
 	#month
-	month = request.POST['month']
+	month = post.get('month', 'january')
 	month = months_map[month]
-		
+	if ampm == 'pm' and int(hour) != 12:
+		hour = int(hour) +12 
+			
 	date = None
 	try:
 		date = datetime(year=int(year), month=int(month), 
@@ -143,9 +143,14 @@ def newaction(request):
 
 	now = datetime.now()
 			
-	email = request.POST.get('email', '')
-	phone_number = request.POST.get('phone_number', '')
+	email = post.get('email', '')
+	phone_number = extractPhoneNumber(post)
+	#phone_number = post.get('phone_number', '')
 
+	adjustedNow = datetime.now() 
+	adjustedNow = adjustedNow + timedelta(hours=-7)
+	logging.debug("now "+str(datetime.now()))
+	logging.debug("now adjusted "+ str(adjustedNow))
 	if not validate_phone(phone_number):
 		response = "invalid phone number"
 		rc={'val':1, 'response':response}
@@ -155,7 +160,8 @@ def newaction(request):
 		#response = "invalid email"
 		#rc={'val':1, 'response':response}
 		
-	elif date and date < datetime.now():
+	elif date and date < adjustedNow:
+		logging.debug("date: "+ str(date) + " " + str(adjustedNow))
 		response = "date is before now"
 		rc={'val':1, 'response':response}
 
@@ -164,11 +170,7 @@ def newaction(request):
 		logging.debug("fail to create: "+rc['response'])
 		return render_to_response(request, 'create.html', rc)
 		
-	#Find the user if he exists
-	#list = CUser.objects.filter(phone_number=phone_number)
-		
 	#create the action
-	logging.debug( "creating the action")
 	message = "You need to call "+ phone_number 
 	action = CAction()
 	if users.get_current_user():
@@ -179,13 +181,10 @@ def newaction(request):
 	action.date_to_be_executed = date
 	action.date_created = now
 	action.date_finished = now
+	action.memo = 'this is the memo of the note'
 	action.finished = False
 	action.sender = request.user.get_profile()
 	action.put()
-
-	#request.user.get_profile().caction_set.create(phone_number=phone_number, message=message, date_created=now, date_to_be_executed=date, date_finished=now, finished = False)
-	#print user.action_set.all()
-	logging.debug( "done")
 
 	rc.update(callmeutil.populatecreatepage(request.user))
 	return render_to_response(request, templatepage, rc)
@@ -212,7 +211,8 @@ def cron(request):
 		results = q2.fetch(1000)
 		for i in results:
 			#i.perform()
-			callmeutil.sendMail(i.sender.phone_number, i.sender.phone_number.replace('-','')+"@txt.att.net", 'Call Reminder', i.phone_number)
+			message = i.memo+ " " + i.phone_number
+			callmeutil.sendMail(i.sender.phone_number, i.sender.phone_number.replace('-','')+"@txt.att.net", 'Call Reminder', message)
 			i.finished = True
 			i.save()
 		return HttpResponseRedirect('/')
