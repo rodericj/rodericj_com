@@ -198,7 +198,7 @@ def create(request):
 	return HttpResponseRedirect('/account/register/')
 	
 def validate_phone(phone_number):
-	return len(phone_number) > 0
+	return len(phone_number) == 12
 
 def validate_email(email):
 	return len(email) > 0
