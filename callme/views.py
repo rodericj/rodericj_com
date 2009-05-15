@@ -22,7 +22,7 @@ def start(request):
 		if user in dir(user):
 			ret = HttpResponseRedirect('/callme/create/')
 		else:
-			return render_to_response(request, 'createprofile.html', {'number':123})#args)
+			return render_to_response(request, 'createprofile.html', {})
 			#ret = HttpresponseRedirect('callme/createaccount/')
 	else:
 		logging.debug("not authenticated")
@@ -39,14 +39,14 @@ def resend(request):
 	logging.debug('resending the phone number')
 	user = request.user.get_profile()
 	sendConfirmation(user, user.phone_number)
-	args = callmeutil.populatecreatepage(request.user)
-	args['numbersent'] = True
-	return render_to_response(request, 'createprofile.html', args)
+	rc = callmeutil.populatecreatepage(request.user)
+	rc['numbersent'] = True
+	return render_to_response(request, 'createprofile.html', rc)
 
 def createprofile(request):
 	logging.debug('entering createprofile')
 	templatepage = 'createprofile.html'
-	args = {}
+	rc = {}
 	post = request.POST
 
 	#if phone number entered
@@ -68,8 +68,8 @@ def createprofile(request):
 		#otherwise profile looks good so far, we can send the sms
 		logging.debug("testing user")
 		if not userProfile.validate():
-			args['val'] = 1
-			args['response'] = "error in input"# userProfile.popitem()
+			rc['val'] = 1
+			rc['response'] = "error in input"# userProfile.popitem()
 			logging.error('error in validation of phone number')
 
 		else:
@@ -81,8 +81,8 @@ def createprofile(request):
 			#request.user.user = userProfile
 			request.user.save()
 			sendConfirmation(userProfile, phone_number)
-			args['val'] = 0
-			args['numbersent'] = True
+			rc['val'] = 0
+			rc['numbersent'] = True
 			logging.debug('looks good, sent email')
 			if not request.user.get_profile():
 				logging.error("Not get_profile()")
@@ -99,14 +99,11 @@ def createprofile(request):
 			templatepage = 'create.html'
 		else:
 			logging.debug("codes do not match")
-			args['numbersent'] = True
-	args.update(callmeutil.populatecreatepage(request.user))
+			rc['numbersent'] = True
+	rc.update(callmeutil.populatecreatepage(request.user))
 		
 	logging.debug('ending and going to ' + templatepage)
-	#for i in args:
-		#logging.debug(i+": " +str(args[i]))
-	#return render_to_response(args, 'createprofile.html' )
-	return render_to_response(request, templatepage, args)
+	return render_to_response(request, templatepage, rc)
 		
 @login_required
 def logout_view(request):
@@ -119,7 +116,6 @@ def logout_view(request):
 def newaction(request):
 	logging.debug("new request")
 	templatepage = 'create.html'
-	args = {}
 	rc={'val':0, 'response':'success'}
 	months_map = {'january':1, 'february':2, 'march':3, 'april':4, 'may':5, 'june':6, 'july':7, 'august':8, 'september':9, 'october':10, 'november':11, 'december':12}
 	
@@ -164,8 +160,7 @@ def newaction(request):
 		rc={'val':1, 'response':response}
 
 	if rc['val'] != 0:
-		args = callmeutil.populatecreatepage(request.user)
-		rc.update(args)
+		rc.update(callmeutil.populatecreatepage(request.user))
 		logging.debug("fail to create: "+rc['response'])
 		return render_to_response(request, 'create.html', rc)
 		
@@ -192,8 +187,8 @@ def newaction(request):
 	#print user.action_set.all()
 	logging.debug( "done")
 
-	args.update(callmeutil.populatecreatepage(request.user))
-	return render_to_response(request, templatepage, args)
+	rc.update(callmeutil.populatecreatepage(request.user))
+	return render_to_response(request, templatepage, rc)
 
 @login_required
 def create(request):

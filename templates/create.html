@@ -1,5 +1,12 @@
+{% if val %}
 <font color=red>{{response}}</font>
+{% else %}
+<font color=green>{{response}}</font>
+{% endif %}
+
+
 <h1>Create a Message</h1>
+
 <form action="/callme/newaction/" method="post">
 Name: <input type="text" name="name"><br>
 Phone number to call at alarm: <input type="text" name="phone_number" maxlength=10><br>
