@@ -9,9 +9,8 @@ handlers:
 - url: /media
   static_dir: _generated_media
 
+- url: /callme/cron/
+  script: cron.py
+
 - url: /.*
   script: common/appenginepatch/main.py
-
-- url: /callme/cron
-  script: cron.py
-  login: admin

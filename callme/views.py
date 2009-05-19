@@ -202,17 +202,3 @@ def validate_phone(phone_number):
 
 def validate_email(email):
 	return len(email) > 0
-
-def cron(request):
-		logging.debug("entering cron")
-		q = CAction.all()
-		q1 = q.filter('date_to_be_executed <', datetime.now())
-		q2 = q1.filter('finished =', False)
-		results = q2.fetch(1000)
-		for i in results:
-			#i.perform()
-			message = i.memo+ " " + i.phone_number
-			callmeutil.sendMail(i.sender.phone_number, i.sender.phone_number.replace('-','')+"@txt.att.net", 'Call Reminder', message)
-			i.finished = True
-			i.save()
-		return HttpResponseRedirect('/')

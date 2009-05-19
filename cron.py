@@ -1,21 +1,18 @@
-from callme.models import CAction, CUser
+from callme.models import CAction
+from datetime import datetime, timedelta
 import logging
-from datetime import datetime
-import util
+from callme import callmeutil
 
-class cron():
-	def execute(self):
-		q1 = CAction.objects.filter(date_to_be_executed__lte =datetime.now())
-		q2 = q1.exclude(finished=True)
-		for i in q2:
-			logging.debug(i)
-			self.send(i)
+q = CAction.all()
+q1 = q.filter('date_to_be_executed <', datetime.now())
+q2 = q1.filter('finished =', False)
+results = q2.fetch(1000)
+logging.debug("sentering cron "+str(len(results)))
 
-	def send(self, a):
-		logging.debug( "this is the caction essentially: "+str(a))
-		logging.debug("1: sender phone number "+a.sender.phone_number)
-		logging.debug("2: phone number "+a.phone_number)
-		logging.debug("3: message "+a.message)
-		sendEmailTo = a.sender.phone_number.replace('-', '')+"@txt.att.net"
-		util.sendMail(sendEmailTo, sendEmailTo, "reminder", a.message)
-		
+for i in results:
+	message = i.memo+ " " + i.phone_number
+	callmeutil.sendMail(i.sender.phone_number, i.sender.phone_number.replace('-','')+"@txt.att.net", 'Call Reminder', message)
+	i.finished = True
+	i.date_finished = datetime.now()
+	i.save()
+
