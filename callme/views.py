@@ -124,11 +124,13 @@ def newaction(request):
 	day = post.get('day', '')
 	ampm = post.get('ampm', '')
 	year = post.get('year', '')
+	memo = post.get('memo', '')
 
 	#adjustments
 	#month
 	month = post.get('month', 'january')
 	month = months_map[month]
+	#TODO set 12AM to 0
 	if ampm == 'pm' and int(hour) != 12:
 		hour = int(hour) +12 
 			
@@ -181,7 +183,7 @@ def newaction(request):
 	action.date_to_be_executed = date
 	action.date_created = now
 	action.date_finished = now
-	action.memo = 'this is the memo of the note'
+	action.memo = memo
 	action.finished = False
 	action.sender = request.user.get_profile()
 	action.put()
