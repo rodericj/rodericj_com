@@ -4,11 +4,12 @@ from callme import callmeutil
 import re
 from google.appengine.ext import db
 from django.contrib.auth.models import User
+from django.contrib.auth import models
 
 # Create your models here.
 class CUser(db.Model):
 	#unique
-	user = db.ReferenceProperty(User)
+	user = db.ReferenceProperty(models.User)
 	#unique
 	phone_number = db.PhoneNumberProperty()
 	#clients = db.ListProperty(str)
