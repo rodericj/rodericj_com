@@ -2,7 +2,7 @@
 #import <Foundation/Foundation.h>
 @class MainView;
 @class Register;
-@interface LoggedOutView : UIView {
+@interface LoggedOutView : UIView <UITextFieldDelegate>{
     IBOutlet MainView *mainview;
     IBOutlet Register *registerView;
 }
