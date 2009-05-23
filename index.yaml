@@ -12,10 +12,16 @@ indexes:
   - name: action_time
     direction: desc
 
-- kind: callme_caction 
-  properties:
-  - name: finished
-  - name: date_to_be_executed
+#- kind: callme_caction 
+  #properties:
+  #- name: finished
+  #- name: date_to_be_executed
+#
+#- kind: CAction
+  #properties:
+  #- name: finished
+  #- name: date_to_be_executed
+
 
 # This index.yaml is automatically updated whenever the dev_appserver
 # detects that a new type of query is run.  If you want to manage the

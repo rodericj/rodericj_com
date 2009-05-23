@@ -1,7 +1,8 @@
-from callme.models import CAction
+from callme.models import CAction, CUser
 from datetime import datetime, timedelta
 import logging
 from callme import callmeutil
+from google.appengine.api import users
 
 q = CAction.all()
 q1 = q.filter('date_to_be_executed <', datetime.now())

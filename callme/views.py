@@ -53,6 +53,8 @@ def extractPhoneNumber(thePost):
 	
 @login_required
 def createprofile(request):
+	#logging.warn(dir(request))
+	#logging.warn(type(request.user))
 	logging.debug('entering createprofile')
 	templatepage = 'createprofile.html'
 	rc = {}
@@ -60,7 +62,7 @@ def createprofile(request):
 	post = request.POST
 
 	if request.user.get_profile():
-		logging.warn("We DO NOT want to create the new user")
+		logging.warn("We DO NOT want to create the new user: he looks like this: "+ request.user.get_profile())
 
 	#if phone number entered then we set up the new CUser
 	if post.has_key('phone_number1') and post.has_key('phone_number2') and post.has_key('phone_number3'):
@@ -79,6 +81,8 @@ def createprofile(request):
 
 		else:
 			user = request.user
+			logging.warn("request.user type: " + str(type(user)))
+
 			userProfile = CUser(user=user, phone_number=phone_number, date_last_used=now,
 			verified=False, clients=1, secret=secret)
 			userProfile.save()
@@ -177,6 +181,8 @@ def newaction(request):
 	action = CAction()
 	if users.get_current_user():
 		action.sender = users.get_current_user()
+	else:
+		logging.error("No user for this users object")
 
 	action.phone_number = phone_number
 	action.message = 1#message

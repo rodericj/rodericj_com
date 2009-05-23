@@ -3,6 +3,7 @@ import logging
 from callme import callmeutil
 import re
 from google.appengine.ext import db
+from google.appengine.ext.db import Model
 from django.contrib.auth.models import User
 from django.contrib.auth import models
 
@@ -10,6 +11,7 @@ from django.contrib.auth import models
 class CUser(db.Model):
 	#unique
 	user = db.ReferenceProperty(models.User)
+	#user = db.UserProperty(User)
 	#unique
 	phone_number = db.PhoneNumberProperty()
 	#clients = db.ListProperty(str)
