@@ -138,6 +138,7 @@ def newaction(request):
 	if ampm == 'pm' and int(hour) != 12:
 		hour = int(hour) +12 
 			
+	#get the date
 	date = None
 	try:
 		date = datetime(year=int(year), month=int(month), 
@@ -186,7 +187,8 @@ def newaction(request):
 
 	action.phone_number = phone_number
 	action.message = 1#message
-	action.date_to_be_executed = date
+	#TODO Need to make a more robust timezone thing. this is so whack.
+	action.date_to_be_executed = date + timedelta(hours=+7)
 	action.date_created = now
 	action.date_finished = now
 	action.memo = memo

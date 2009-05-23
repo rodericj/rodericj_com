@@ -1,3 +1,11 @@
+<head>
+<script type="text/javascript">
+function onload(){
+	document.getElementById("day{{nowday}}").selected=true;
+	document.getElementById("month{{nowmonth}}").selected=true;
+}
+</script>
+</head>
 {% if val %}
 <font color=red>{{response}}</font>
 {% else %}
@@ -36,13 +44,13 @@ Time: <select name="hour">
 <br>
 Day: <select name="day">
 {% for i in days %}
-<option>{{i}}</option>
+	<option id=day{{i}}>{{i}}</option>
 {% endfor %} 
 </select>
 
 <select name="month">
 {% for i in months %}
-<option>{{i}}</option>
+	<option id=month{{i}}>{{i}}</option>
 {% endfor %} 
 </select>
 
