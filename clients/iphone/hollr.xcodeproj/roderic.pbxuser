@@ -44,7 +44,7 @@
 				PBXFileTableDataSourceColumnSortingKey = PBXFileDataSource_Filename_ColumnID;
 				PBXFileTableDataSourceColumnWidthsKey = (
 					20,
-					341,
+					292,
 					20,
 					48,
 					43,
@@ -288,6 +288,33 @@
 			5FFABECB0FC78C6800B49338 /* PBXTextBookmark */ = 5FFABECB0FC78C6800B49338 /* PBXTextBookmark */;
 			5FFABECC0FC78C6800B49338 /* PBXTextBookmark */ = 5FFABECC0FC78C6800B49338 /* PBXTextBookmark */;
 			5FFABECD0FC78C6800B49338 /* PBXTextBookmark */ = 5FFABECD0FC78C6800B49338 /* PBXTextBookmark */;
+			5FFABEE10FC7972800B49338 /* PBXTextBookmark */ = 5FFABEE10FC7972800B49338 /* PBXTextBookmark */;
+			5FFABEE20FC7972800B49338 /* PBXTextBookmark */ = 5FFABEE20FC7972800B49338 /* PBXTextBookmark */;
+			5FFABEE30FC7972800B49338 /* PBXTextBookmark */ = 5FFABEE30FC7972800B49338 /* PBXTextBookmark */;
+			5FFABEE40FC7972800B49338 /* PBXTextBookmark */ = 5FFABEE40FC7972800B49338 /* PBXTextBookmark */;
+			5FFABEE50FC7972800B49338 /* PBXTextBookmark */ = 5FFABEE50FC7972800B49338 /* PBXTextBookmark */;
+			5FFABEE60FC7972800B49338 /* PBXTextBookmark */ = 5FFABEE60FC7972800B49338 /* PBXTextBookmark */;
+			5FFABEE80FC7976700B49338 /* PBXTextBookmark */ = 5FFABEE80FC7976700B49338 /* PBXTextBookmark */;
+			5FFABEEC0FCB33D200B49338 /* PBXTextBookmark */ = 5FFABEEC0FCB33D200B49338 /* PBXTextBookmark */;
+			5FFABEED0FCB33D200B49338 /* PBXTextBookmark */ = 5FFABEED0FCB33D200B49338 /* PBXTextBookmark */;
+			5FFABEEE0FCB33D300B49338 /* PBXTextBookmark */ = 5FFABEEE0FCB33D300B49338 /* PBXTextBookmark */;
+			5FFABEEF0FCB33D500B49338 /* PBXTextBookmark */ = 5FFABEEF0FCB33D500B49338 /* PBXTextBookmark */;
+			5FFABEF00FCB33F300B49338 /* PBXTextBookmark */ = 5FFABEF00FCB33F300B49338 /* PBXTextBookmark */;
+			5FFABEF10FCB341100B49338 /* PBXBookmark */ = 5FFABEF10FCB341100B49338 /* PBXBookmark */;
+			5FFABEF30FCB345C00B49338 /* PBXTextBookmark */ = 5FFABEF30FCB345C00B49338 /* PBXTextBookmark */;
+			5FFABEF60FCB345C00B49338 /* PBXTextBookmark */ = 5FFABEF60FCB345C00B49338 /* PBXTextBookmark */;
+			5FFABEF90FCB34A600B49338 /* PBXTextBookmark */ = 5FFABEF90FCB34A600B49338 /* PBXTextBookmark */;
+			5FFABEFA0FCB34A600B49338 /* PBXTextBookmark */ = 5FFABEFA0FCB34A600B49338 /* PBXTextBookmark */;
+			5FFABEFE0FCB387E00B49338 /* PBXTextBookmark */ = 5FFABEFE0FCB387E00B49338 /* PBXTextBookmark */;
+			5FFABEFF0FCB387E00B49338 /* PBXTextBookmark */ = 5FFABEFF0FCB387E00B49338 /* PBXTextBookmark */;
+			5FFABF000FCB3E6000B49338 /* PBXTextBookmark */ = 5FFABF000FCB3E6000B49338 /* PBXTextBookmark */;
+			5FFABF010FCB3E6000B49338 /* PBXTextBookmark */ = 5FFABF010FCB3E6000B49338 /* PBXTextBookmark */;
+			5FFABF020FCB3E6000B49338 /* PBXTextBookmark */ = 5FFABF020FCB3E6000B49338 /* PBXTextBookmark */;
+			5FFABF030FCB3E6000B49338 /* PBXTextBookmark */ = 5FFABF030FCB3E6000B49338 /* PBXTextBookmark */;
+			5FFABF040FCB3E6000B49338 /* PBXTextBookmark */ = 5FFABF040FCB3E6000B49338 /* PBXTextBookmark */;
+			5FFABF0D0FCB445700B49338 /* PBXTextBookmark */ = 5FFABF0D0FCB445700B49338 /* PBXTextBookmark */;
+			5FFABF0F0FCB450C00B49338 /* PBXTextBookmark */ = 5FFABF0F0FCB450C00B49338 /* PBXTextBookmark */;
+			5FFABF130FCB458700B49338 /* PBXTextBookmark */ = 5FFABF130FCB458700B49338 /* PBXTextBookmark */;
 			5FFD337D0FC62A0000F94ABA = 5FFD337D0FC62A0000F94ABA /* PBXTextBookmark */;
 			5FFD337E0FC62A0000F94ABA = 5FFD337E0FC62A0000F94ABA /* PBXTextBookmark */;
 			5FFD337F0FC62A0000F94ABA = 5FFD337F0FC62A0000F94ABA /* PBXTextBookmark */;
@@ -396,7 +423,7 @@
 		comments = "warning: property 'userName' requires method '-userName' to be defined - use @synthesize, @dynamic or provide a method implementation";
 		fRef = 5FFD335F0FC627C100F94ABA /* Register.m */;
 		rLen = 1;
-		rLoc = 53;
+		rLoc = 126;
 		rType = 1;
 	};
 	5FFABD900FC6399300B49338 /* PBXTextBookmark */ = {
@@ -414,7 +441,7 @@
 		comments = "error: 'textField' undeclared (first use in this function)";
 		fRef = 5FFD335F0FC627C100F94ABA /* Register.m */;
 		rLen = 1;
-		rLoc = 22;
+		rLoc = 29;
 		rType = 1;
 	};
 	5FFABD920FC6399300B49338 /* PBXTextBookmark */ = {
@@ -432,7 +459,7 @@
 		fRef = 5FFD335F0FC627C100F94ABA /* Register.m */;
 		name = "Register.m: 10";
 		rLen = 0;
-		rLoc = 679;
+		rLoc = 973;
 		rType = 0;
 		vrLen = 163;
 		vrLoc = 0;
@@ -472,7 +499,7 @@
 		fRef = 5FFD335F0FC627C100F94ABA /* Register.m */;
 		name = "Register.m: 7";
 		rLen = 0;
-		rLoc = 657;
+		rLoc = 951;
 		rType = 0;
 		vrLen = 145;
 		vrLoc = 0;
@@ -482,7 +509,7 @@
 		fRef = 5FFD33600FC627C100F94ABA /* Register.h */;
 		name = "Register.h: 8";
 		rLen = 8;
-		rLoc = 361;
+		rLoc = 360;
 		rType = 0;
 		vrLen = 271;
 		vrLoc = 0;
@@ -532,7 +559,7 @@
 		fRef = 5FFD33600FC627C100F94ABA /* Register.h */;
 		name = "Register.h: 11";
 		rLen = 27;
-		rLoc = 677;
+		rLoc = 676;
 		rType = 0;
 		vrLen = 267;
 		vrLoc = 0;
@@ -542,7 +569,7 @@
 		fRef = 5FFD335F0FC627C100F94ABA /* Register.m */;
 		name = "Register.m: 8";
 		rLen = 0;
-		rLoc = 694;
+		rLoc = 988;
 		rType = 0;
 		vrLen = 123;
 		vrLoc = 0;
@@ -562,7 +589,7 @@
 		fRef = 5FFD335F0FC627C100F94ABA /* Register.m */;
 		name = "Register.m: 8";
 		rLen = 0;
-		rLoc = 694;
+		rLoc = 988;
 		rType = 0;
 		vrLen = 123;
 		vrLoc = 0;
@@ -572,7 +599,7 @@
 		fRef = 5FFD33600FC627C100F94ABA /* Register.h */;
 		name = "Register.h: 7";
 		rLen = 0;
-		rLoc = 317;
+		rLoc = 316;
 		rType = 0;
 		vrLen = 267;
 		vrLoc = 0;
@@ -582,7 +609,7 @@
 		fRef = 5FFD335F0FC627C100F94ABA /* Register.m */;
 		name = "Register.m: 8";
 		rLen = 0;
-		rLoc = 694;
+		rLoc = 988;
 		rType = 0;
 		vrLen = 149;
 		vrLoc = 0;
@@ -592,7 +619,7 @@
 		fRef = 5FFD33600FC627C100F94ABA /* Register.h */;
 		name = "Register.h: 8";
 		rLen = 8;
-		rLoc = 361;
+		rLoc = 360;
 		rType = 0;
 		vrLen = 271;
 		vrLoc = 0;
@@ -602,7 +629,7 @@
 		fRef = 5FFD335F0FC627C100F94ABA /* Register.m */;
 		name = "Register.m: 7";
 		rLen = 0;
-		rLoc = 657;
+		rLoc = 951;
 		rType = 0;
 		vrLen = 145;
 		vrLoc = 0;
@@ -612,7 +639,7 @@
 		fRef = 5FFD33600FC627C100F94ABA /* Register.h */;
 		name = "Register.h: 14";
 		rLen = 0;
-		rLoc = 641;
+		rLoc = 640;
 		rType = 0;
 		vrLen = 523;
 		vrLoc = 0;
@@ -632,7 +659,7 @@
 		fRef = 5FFD33600FC627C100F94ABA /* Register.h */;
 		name = "Register.h: 14";
 		rLen = 0;
-		rLoc = 641;
+		rLoc = 640;
 		rType = 0;
 		vrLen = 523;
 		vrLoc = 0;
@@ -652,7 +679,7 @@
 		fRef = 5FFD335F0FC627C100F94ABA /* Register.m */;
 		name = "Register.m: 13";
 		rLen = 0;
-		rLoc = 694;
+		rLoc = 988;
 		rType = 0;
 		vrLen = 214;
 		vrLoc = 0;
@@ -672,7 +699,7 @@
 		fRef = 5FFD335F0FC627C100F94ABA /* Register.m */;
 		name = "Register.m: 11";
 		rLen = 0;
-		rLoc = 694;
+		rLoc = 988;
 		rType = 0;
 		vrLen = 148;
 		vrLoc = 0;
@@ -682,7 +709,7 @@
 		fRef = 5FFD33600FC627C100F94ABA /* Register.h */;
 		name = "Register.h: 10";
 		rLen = 0;
-		rLoc = 641;
+		rLoc = 640;
 		rType = 0;
 		vrLen = 271;
 		vrLoc = 0;
@@ -692,7 +719,7 @@
 		fRef = 5FFD335F0FC627C100F94ABA /* Register.m */;
 		name = "Register.m: 11";
 		rLen = 0;
-		rLoc = 694;
+		rLoc = 988;
 		rType = 0;
 		vrLen = 148;
 		vrLoc = 0;
@@ -702,7 +729,7 @@
 		fRef = 5FFD33600FC627C100F94ABA /* Register.h */;
 		name = "Register.h: 10";
 		rLen = 0;
-		rLoc = 641;
+		rLoc = 640;
 		rType = 0;
 		vrLen = 271;
 		vrLoc = 0;
@@ -712,7 +739,7 @@
 		fRef = 5FFD33600FC627C100F94ABA /* Register.h */;
 		name = "Register.h: 10";
 		rLen = 0;
-		rLoc = 641;
+		rLoc = 640;
 		rType = 0;
 		vrLen = 271;
 		vrLoc = 0;
@@ -722,7 +749,7 @@
 		fRef = 5FFD335F0FC627C100F94ABA /* Register.m */;
 		name = "Register.m: 4";
 		rLen = 0;
-		rLoc = 65;
+		rLoc = 359;
 		rType = 0;
 		vrLen = 149;
 		vrLoc = 0;
@@ -732,7 +759,7 @@
 		fRef = 5FFD335F0FC627C100F94ABA /* Register.m */;
 		name = "Register.m: 8";
 		rLen = 0;
-		rLoc = 694;
+		rLoc = 988;
 		rType = 0;
 		vrLen = 149;
 		vrLoc = 0;
@@ -742,7 +769,7 @@
 		fRef = 5FFD335F0FC627C100F94ABA /* Register.m */;
 		name = "Register.m: 4";
 		rLen = 0;
-		rLoc = 65;
+		rLoc = 359;
 		rType = 0;
 		vrLen = 149;
 		vrLoc = 0;
@@ -752,7 +779,7 @@
 		fRef = 5FFD33600FC627C100F94ABA /* Register.h */;
 		name = "Register.h: 10";
 		rLen = 0;
-		rLoc = 641;
+		rLoc = 640;
 		rType = 0;
 		vrLen = 271;
 		vrLoc = 0;
@@ -762,7 +789,7 @@
 		fRef = 5FFD335F0FC627C100F94ABA /* Register.m */;
 		name = "Register.m: 4";
 		rLen = 0;
-		rLoc = 65;
+		rLoc = 359;
 		rType = 0;
 		vrLen = 149;
 		vrLoc = 0;
@@ -772,7 +799,7 @@
 		fRef = 5FFD33600FC627C100F94ABA /* Register.h */;
 		name = "Register.h: 15";
 		rLen = 0;
-		rLoc = 526;
+		rLoc = 525;
 		rType = 0;
 		vrLen = 519;
 		vrLoc = 0;
@@ -782,7 +809,7 @@
 		fRef = 5FFD335F0FC627C100F94ABA /* Register.m */;
 		name = "Register.m: 8";
 		rLen = 0;
-		rLoc = 694;
+		rLoc = 988;
 		rType = 0;
 		vrLen = 149;
 		vrLoc = 0;
@@ -792,7 +819,7 @@
 		fRef = 5FFD33600FC627C100F94ABA /* Register.h */;
 		name = "Register.h: 23";
 		rLen = 0;
-		rLoc = 702;
+		rLoc = 701;
 		rType = 0;
 		vrLen = 536;
 		vrLoc = 174;
@@ -802,7 +829,7 @@
 		fRef = 5FFD335F0FC627C100F94ABA /* Register.m */;
 		name = "Register.m: 4";
 		rLen = 0;
-		rLoc = 65;
+		rLoc = 359;
 		rType = 0;
 		vrLen = 149;
 		vrLoc = 0;
@@ -812,7 +839,7 @@
 		fRef = 5FFD33600FC627C100F94ABA /* Register.h */;
 		name = "Register.h: 23";
 		rLen = 0;
-		rLoc = 702;
+		rLoc = 701;
 		rType = 0;
 		vrLen = 536;
 		vrLoc = 174;
@@ -822,7 +849,7 @@
 		fRef = 5FFD335F0FC627C100F94ABA /* Register.m */;
 		name = "Register.m: 12";
 		rLen = 0;
-		rLoc = 807;
+		rLoc = 1101;
 		rType = 0;
 		vrLen = 240;
 		vrLoc = 0;
@@ -832,7 +859,7 @@
 		fRef = 5FFD335F0FC627C100F94ABA /* Register.m */;
 		name = "Register.m: 13";
 		rLen = 0;
-		rLoc = 815;
+		rLoc = 1109;
 		rType = 0;
 		vrLen = 240;
 		vrLoc = 0;
@@ -842,7 +869,7 @@
 		fRef = 5FFD335F0FC627C100F94ABA /* Register.m */;
 		name = "Register.m: 10";
 		rLen = 0;
-		rLoc = 728;
+		rLoc = 1022;
 		rType = 0;
 		vrLen = 234;
 		vrLoc = 0;
@@ -852,7 +879,7 @@
 		fRef = 5FFD335F0FC627C100F94ABA /* Register.m */;
 		name = "Register.m: 13";
 		rLen = 0;
-		rLoc = 815;
+		rLoc = 1109;
 		rType = 0;
 		vrLen = 240;
 		vrLoc = 0;
@@ -862,7 +889,7 @@
 		fRef = 5FFD335F0FC627C100F94ABA /* Register.m */;
 		name = "Register.m: 10";
 		rLen = 0;
-		rLoc = 728;
+		rLoc = 1022;
 		rType = 0;
 		vrLen = 338;
 		vrLoc = 0;
@@ -872,7 +899,7 @@
 		fRef = 5FFD335F0FC627C100F94ABA /* Register.m */;
 		name = "Register.m: 17";
 		rLen = 0;
-		rLoc = 1568;
+		rLoc = 3832;
 		rType = 0;
 		vrLen = 346;
 		vrLoc = 0;
@@ -882,7 +909,7 @@
 		fRef = 5FFD335F0FC627C100F94ABA /* Register.m */;
 		name = "Register.m: 10";
 		rLen = 0;
-		rLoc = 728;
+		rLoc = 1022;
 		rType = 0;
 		vrLen = 361;
 		vrLoc = 0;
@@ -892,7 +919,7 @@
 		fRef = 5FFD335F0FC627C100F94ABA /* Register.m */;
 		name = "Register.m: 17";
 		rLen = 0;
-		rLoc = 1556;
+		rLoc = 3832;
 		rType = 0;
 		vrLen = 381;
 		vrLoc = 0;
@@ -902,7 +929,7 @@
 		fRef = 5FFD335F0FC627C100F94ABA /* Register.m */;
 		name = "Register.m: 10";
 		rLen = 0;
-		rLoc = 728;
+		rLoc = 1022;
 		rType = 0;
 		vrLen = 360;
 		vrLoc = 0;
@@ -912,7 +939,7 @@
 		fRef = 5FFD33600FC627C100F94ABA /* Register.h */;
 		name = "Register.h: 23";
 		rLen = 0;
-		rLoc = 702;
+		rLoc = 701;
 		rType = 0;
 		vrLen = 536;
 		vrLoc = 174;
@@ -922,7 +949,7 @@
 		fRef = 5FFD335F0FC627C100F94ABA /* Register.m */;
 		name = "Register.m: 10";
 		rLen = 0;
-		rLoc = 728;
+		rLoc = 1022;
 		rType = 0;
 		vrLen = 360;
 		vrLoc = 0;
@@ -932,7 +959,7 @@
 		fRef = 5FFD33600FC627C100F94ABA /* Register.h */;
 		name = "Register.h: 23";
 		rLen = 0;
-		rLoc = 702;
+		rLoc = 701;
 		rType = 0;
 		vrLen = 581;
 		vrLoc = 0;
@@ -942,7 +969,7 @@
 		fRef = 5FFD335F0FC627C100F94ABA /* Register.m */;
 		name = "Register.m: 17";
 		rLen = 0;
-		rLoc = 1533;
+		rLoc = 3832;
 		rType = 0;
 		vrLen = 375;
 		vrLoc = 0;
@@ -952,7 +979,7 @@
 		fRef = 5FFD33600FC627C100F94ABA /* Register.h */;
 		name = "Register.h: 23";
 		rLen = 0;
-		rLoc = 702;
+		rLoc = 701;
 		rType = 0;
 		vrLen = 581;
 		vrLoc = 0;
@@ -962,7 +989,7 @@
 		fRef = 5FFD335F0FC627C100F94ABA /* Register.m */;
 		name = "Register.m: 15";
 		rLen = 0;
-		rLoc = 884;
+		rLoc = 1178;
 		rType = 0;
 		vrLen = 375;
 		vrLoc = 82;
@@ -972,7 +999,7 @@
 		fRef = 5FFD33600FC627C100F94ABA /* Register.h */;
 		name = "Register.h: 23";
 		rLen = 0;
-		rLoc = 702;
+		rLoc = 701;
 		rType = 0;
 		vrLen = 581;
 		vrLoc = 0;
@@ -982,7 +1009,7 @@
 		fRef = 5FFD335F0FC627C100F94ABA /* Register.m */;
 		name = "Register.m: 15";
 		rLen = 0;
-		rLoc = 883;
+		rLoc = 1177;
 		rType = 0;
 		vrLen = 373;
 		vrLoc = 82;
@@ -992,7 +1019,7 @@
 		fRef = 5FFD33600FC627C100F94ABA /* Register.h */;
 		name = "Register.h: 23";
 		rLen = 0;
-		rLoc = 702;
+		rLoc = 701;
 		rType = 0;
 		vrLen = 581;
 		vrLoc = 0;
@@ -1002,7 +1029,7 @@
 		fRef = 5FFD335F0FC627C100F94ABA /* Register.m */;
 		name = "Register.m: 21";
 		rLen = 0;
-		rLoc = 1567;
+		rLoc = 3832;
 		rType = 0;
 		vrLen = 372;
 		vrLoc = 82;
@@ -1012,7 +1039,7 @@
 		fRef = 5FFD33600FC627C100F94ABA /* Register.h */;
 		name = "Register.h: 23";
 		rLen = 0;
-		rLoc = 702;
+		rLoc = 701;
 		rType = 0;
 		vrLen = 641;
 		vrLoc = 0;
@@ -1022,7 +1049,7 @@
 		fRef = 5FFD335F0FC627C100F94ABA /* Register.m */;
 		name = "Register.m: 27";
 		rLen = 0;
-		rLoc = 888;
+		rLoc = 2196;
 		rType = 0;
 		vrLen = 666;
 		vrLoc = 303;
@@ -1032,7 +1059,7 @@
 		fRef = 5FFD33600FC627C100F94ABA /* Register.h */;
 		name = "Register.h: 23";
 		rLen = 0;
-		rLoc = 702;
+		rLoc = 701;
 		rType = 0;
 		vrLen = 641;
 		vrLoc = 0;
@@ -1042,7 +1069,7 @@
 		fRef = 5FFD335F0FC627C100F94ABA /* Register.m */;
 		name = "Register.m: 27";
 		rLen = 0;
-		rLoc = 888;
+		rLoc = 2196;
 		rType = 0;
 		vrLen = 666;
 		vrLoc = 303;
@@ -1052,7 +1079,7 @@
 		fRef = 5FFD33600FC627C100F94ABA /* Register.h */;
 		name = "Register.h: 23";
 		rLen = 0;
-		rLoc = 702;
+		rLoc = 701;
 		rType = 0;
 		vrLen = 641;
 		vrLoc = 0;
@@ -1062,7 +1089,7 @@
 		fRef = 5FFD335F0FC627C100F94ABA /* Register.m */;
 		name = "Register.m: 7";
 		rLen = 167;
-		rLoc = 649;
+		rLoc = 943;
 		rType = 0;
 		vrLen = 420;
 		vrLoc = 0;
@@ -1092,7 +1119,7 @@
 		fRef = 5FFD33600FC627C100F94ABA /* Register.h */;
 		name = "Register.h: 23";
 		rLen = 0;
-		rLoc = 702;
+		rLoc = 701;
 		rType = 0;
 		vrLen = 641;
 		vrLoc = 0;
@@ -1112,7 +1139,7 @@
 		fRef = 5FFD335F0FC627C100F94ABA /* Register.m */;
 		name = "Register.m: 7";
 		rLen = 167;
-		rLoc = 649;
+		rLoc = 943;
 		rType = 0;
 		vrLen = 420;
 		vrLoc = 0;
@@ -1196,7 +1223,7 @@
 		fRef = 5FFD33600FC627C100F94ABA /* Register.h */;
 		name = "Register.h: 23";
 		rLen = 0;
-		rLoc = 702;
+		rLoc = 701;
 		rType = 0;
 		vrLen = 705;
 		vrLoc = 0;
@@ -1206,7 +1233,7 @@
 		fRef = 5FFD33600FC627C100F94ABA /* Register.h */;
 		name = "Register.h: 23";
 		rLen = 0;
-		rLoc = 702;
+		rLoc = 701;
 		rType = 0;
 		vrLen = 641;
 		vrLoc = 0;
@@ -1216,7 +1243,7 @@
 		fRef = 5FFD335F0FC627C100F94ABA /* Register.m */;
 		name = "Register.m: 7";
 		rLen = 167;
-		rLoc = 649;
+		rLoc = 943;
 		rType = 0;
 		vrLen = 420;
 		vrLoc = 0;
@@ -1266,7 +1293,7 @@
 		fRef = 5FFD33600FC627C100F94ABA /* Register.h */;
 		name = "Register.h: 23";
 		rLen = 0;
-		rLoc = 702;
+		rLoc = 701;
 		rType = 0;
 		vrLen = 641;
 		vrLoc = 0;
@@ -1276,7 +1303,7 @@
 		fRef = 5FFD335F0FC627C100F94ABA /* Register.m */;
 		name = "Register.m: 7";
 		rLen = 167;
-		rLoc = 649;
+		rLoc = 943;
 		rType = 0;
 		vrLen = 420;
 		vrLoc = 0;
@@ -1336,7 +1363,7 @@
 		fRef = 5FFD33600FC627C100F94ABA /* Register.h */;
 		name = "Register.h: 23";
 		rLen = 0;
-		rLoc = 702;
+		rLoc = 701;
 		rType = 0;
 		vrLen = 704;
 		vrLoc = 0;
@@ -1356,7 +1383,7 @@
 		fRef = 5FFD33600FC627C100F94ABA /* Register.h */;
 		name = "Register.h: 23";
 		rLen = 0;
-		rLoc = 702;
+		rLoc = 701;
 		rType = 0;
 		vrLen = 704;
 		vrLoc = 0;
@@ -1376,7 +1403,7 @@
 		fRef = 5FFD33600FC627C100F94ABA /* Register.h */;
 		name = "Register.h: 23";
 		rLen = 0;
-		rLoc = 702;
+		rLoc = 701;
 		rType = 0;
 		vrLen = 704;
 		vrLoc = 0;
@@ -1396,7 +1423,7 @@
 		fRef = 5FFD33600FC627C100F94ABA /* Register.h */;
 		name = "Register.h: 23";
 		rLen = 0;
-		rLoc = 702;
+		rLoc = 701;
 		rType = 0;
 		vrLen = 705;
 		vrLoc = 0;
@@ -1416,7 +1443,7 @@
 		fRef = 5FFD33600FC627C100F94ABA /* Register.h */;
 		name = "Register.h: 18";
 		rLen = 53;
-		rLoc = 528;
+		rLoc = 527;
 		rType = 0;
 		vrLen = 584;
 		vrLoc = 59;
@@ -1456,7 +1483,7 @@
 		fRef = 5FFD33600FC627C100F94ABA /* Register.h */;
 		name = "Register.h: 18";
 		rLen = 53;
-		rLoc = 528;
+		rLoc = 527;
 		rType = 0;
 		vrLen = 584;
 		vrLoc = 59;
@@ -1476,7 +1503,7 @@
 		fRef = 5FFD33600FC627C100F94ABA /* Register.h */;
 		name = "Register.h: 23";
 		rLen = 0;
-		rLoc = 702;
+		rLoc = 701;
 		rType = 0;
 		vrLen = 704;
 		vrLoc = 0;
@@ -1526,7 +1553,7 @@
 		fRef = 5FFD33600FC627C100F94ABA /* Register.h */;
 		name = "Register.h: 23";
 		rLen = 0;
-		rLoc = 702;
+		rLoc = 701;
 		rType = 0;
 		vrLen = 704;
 		vrLoc = 0;
@@ -1536,7 +1563,7 @@
 		fRef = 5FFD335F0FC627C100F94ABA /* Register.m */;
 		name = "Register.m: 5";
 		rLen = 0;
-		rLoc = 86;
+		rLoc = 380;
 		rType = 0;
 		vrLen = 570;
 		vrLoc = 89;
@@ -1576,7 +1603,7 @@
 		fRef = 5FFD335F0FC627C100F94ABA /* Register.m */;
 		name = "Register.m: 5";
 		rLen = 0;
-		rLoc = 86;
+		rLoc = 380;
 		rType = 0;
 		vrLen = 570;
 		vrLoc = 89;
@@ -1616,7 +1643,7 @@
 		fRef = 5FFD33600FC627C100F94ABA /* Register.h */;
 		name = "Register.h: 23";
 		rLen = 0;
-		rLoc = 702;
+		rLoc = 701;
 		rType = 0;
 		vrLen = 704;
 		vrLoc = 0;
@@ -1636,7 +1663,7 @@
 		fRef = 5FFD33600FC627C100F94ABA /* Register.h */;
 		name = "Register.h: 23";
 		rLen = 0;
-		rLoc = 702;
+		rLoc = 701;
 		rType = 0;
 		vrLen = 704;
 		vrLoc = 0;
@@ -1646,7 +1673,7 @@
 		fRef = 5FFD335F0FC627C100F94ABA /* Register.m */;
 		name = "Register.m: 13";
 		rLen = 0;
-		rLoc = 815;
+		rLoc = 1109;
 		rType = 0;
 		vrLen = 232;
 		vrLoc = 0;
@@ -1676,7 +1703,7 @@
 		fRef = 5FFD335F0FC627C100F94ABA /* Register.m */;
 		name = "Register.m: 5";
 		rLen = 0;
-		rLoc = 86;
+		rLoc = 380;
 		rType = 0;
 		vrLen = 306;
 		vrLoc = 0;
@@ -1686,7 +1713,7 @@
 		fRef = 5FFD33600FC627C100F94ABA /* Register.h */;
 		name = "Register.h: 18";
 		rLen = 53;
-		rLoc = 528;
+		rLoc = 527;
 		rType = 0;
 		vrLen = 497;
 		vrLoc = 208;
@@ -1736,7 +1763,7 @@
 		fRef = 5FFD33600FC627C100F94ABA /* Register.h */;
 		name = "Register.h: 18";
 		rLen = 53;
-		rLoc = 528;
+		rLoc = 527;
 		rType = 0;
 		vrLen = 583;
 		vrLoc = 59;
@@ -1746,7 +1773,7 @@
 		fRef = 5FFD335F0FC627C100F94ABA /* Register.m */;
 		name = "Register.m: 5";
 		rLen = 0;
-		rLoc = 86;
+		rLoc = 380;
 		rType = 0;
 		vrLen = 306;
 		vrLoc = 0;
@@ -1756,7 +1783,7 @@
 		fRef = 5FFD33600FC627C100F94ABA /* Register.h */;
 		name = "Register.h: 18";
 		rLen = 53;
-		rLoc = 528;
+		rLoc = 527;
 		rType = 0;
 		vrLen = 502;
 		vrLoc = 208;
@@ -1766,7 +1793,7 @@
 		fRef = 5FFD335F0FC627C100F94ABA /* Register.m */;
 		name = "Register.m: 5";
 		rLen = 0;
-		rLoc = 86;
+		rLoc = 380;
 		rType = 0;
 		vrLen = 306;
 		vrLoc = 0;
@@ -1796,7 +1823,7 @@
 		fRef = 5FFD335F0FC627C100F94ABA /* Register.m */;
 		name = "Register.m: 5";
 		rLen = 0;
-		rLoc = 86;
+		rLoc = 380;
 		rType = 0;
 		vrLen = 306;
 		vrLoc = 0;
@@ -1806,7 +1833,7 @@
 		fRef = 5FFD33600FC627C100F94ABA /* Register.h */;
 		name = "Register.h: 18";
 		rLen = 53;
-		rLoc = 528;
+		rLoc = 527;
 		rType = 0;
 		vrLen = 497;
 		vrLoc = 208;
@@ -1836,7 +1863,7 @@
 		fRef = 5FFD33600FC627C100F94ABA /* Register.h */;
 		name = "Register.h: 23";
 		rLen = 0;
-		rLoc = 702;
+		rLoc = 701;
 		rType = 0;
 		vrLen = 651;
 		vrLoc = 59;
@@ -1876,7 +1903,7 @@
 		fRef = 5FFD33600FC627C100F94ABA /* Register.h */;
 		name = "Register.h: 18";
 		rLen = 53;
-		rLoc = 528;
+		rLoc = 527;
 		rType = 0;
 		vrLen = 531;
 		vrLoc = 174;
@@ -1886,7 +1913,7 @@
 		fRef = 5FFD335F0FC627C100F94ABA /* Register.m */;
 		name = "Register.m: 5";
 		rLen = 0;
-		rLoc = 86;
+		rLoc = 380;
 		rType = 0;
 		vrLen = 365;
 		vrLoc = 604;
@@ -1926,7 +1953,7 @@
 		fRef = 5FFD335F0FC627C100F94ABA /* Register.m */;
 		name = "Register.m: 5";
 		rLen = 0;
-		rLoc = 86;
+		rLoc = 380;
 		rType = 0;
 		vrLen = 365;
 		vrLoc = 604;
@@ -1946,7 +1973,7 @@
 		fRef = 5FFD33600FC627C100F94ABA /* Register.h */;
 		name = "Register.h: 18";
 		rLen = 53;
-		rLoc = 528;
+		rLoc = 527;
 		rType = 0;
 		vrLen = 531;
 		vrLoc = 174;
@@ -1955,8 +1982,8 @@
 		isa = PBXTextBookmark;
 		fRef = 5FFD335F0FC627C100F94ABA /* Register.m */;
 		name = "Register.m: 18";
-		rLen = 538;
-		rLoc = 888;
+		rLen = 1636;
+		rLoc = 2196;
 		rType = 0;
 		vrLen = 634;
 		vrLoc = 303;
@@ -1966,7 +1993,7 @@
 		fRef = 5FFD33600FC627C100F94ABA /* Register.h */;
 		name = "Register.h: 23";
 		rLen = 0;
-		rLoc = 702;
+		rLoc = 701;
 		rType = 0;
 		vrLen = 652;
 		vrLoc = 58;
@@ -1976,7 +2003,7 @@
 		fRef = 5FFD335F0FC627C100F94ABA /* Register.m */;
 		name = "Register.m: 11";
 		rLen = 0;
-		rLoc = 754;
+		rLoc = 1048;
 		rType = 0;
 		vrLen = 454;
 		vrLoc = 47;
@@ -1986,7 +2013,7 @@
 		fRef = 5FFD33600FC627C100F94ABA /* Register.h */;
 		name = "Register.h: 23";
 		rLen = 0;
-		rLoc = 702;
+		rLoc = 701;
 		rType = 0;
 		vrLen = 523;
 		vrLoc = 58;
@@ -1996,7 +2023,7 @@
 		fRef = 5FFD335F0FC627C100F94ABA /* Register.m */;
 		name = "Register.m: 11";
 		rLen = 0;
-		rLoc = 754;
+		rLoc = 1048;
 		rType = 0;
 		vrLen = 454;
 		vrLoc = 47;
@@ -2006,7 +2033,7 @@
 		fRef = 5FFD335F0FC627C100F94ABA /* Register.m */;
 		name = "Register.m: 16";
 		rLen = 0;
-		rLoc = 883;
+		rLoc = 1177;
 		rType = 0;
 		vrLen = 457;
 		vrLoc = 82;
@@ -2016,7 +2043,7 @@
 		fRef = 5FFD33600FC627C100F94ABA /* Register.h */;
 		name = "Register.h: 23";
 		rLen = 0;
-		rLoc = 702;
+		rLoc = 701;
 		rType = 0;
 		vrLen = 523;
 		vrLoc = 58;
@@ -2038,7 +2065,7 @@
 		fRef = 5FFD335F0FC627C100F94ABA /* Register.m */;
 		name = "Register.m: 16";
 		rLen = 0;
-		rLoc = 883;
+		rLoc = 1177;
 		rType = 0;
 		vrLen = 327;
 		vrLoc = 0;
@@ -2058,7 +2085,7 @@
 		fRef = 5FFD33600FC627C100F94ABA /* Register.h */;
 		name = "Register.h: 23";
 		rLen = 0;
-		rLoc = 702;
+		rLoc = 701;
 		rType = 0;
 		vrLen = 523;
 		vrLoc = 58;
@@ -2068,7 +2095,7 @@
 		fRef = 5FFD33600FC627C100F94ABA /* Register.h */;
 		name = "Register.h: 19";
 		rLen = 0;
-		rLoc = 627;
+		rLoc = 626;
 		rType = 0;
 		vrLen = 641;
 		vrLoc = 0;
@@ -2088,7 +2115,7 @@
 		fRef = 5FFD335F0FC627C100F94ABA /* Register.m */;
 		name = "Register.m: 16";
 		rLen = 0;
-		rLoc = 883;
+		rLoc = 1177;
 		rType = 0;
 		vrLen = 695;
 		vrLoc = 82;
@@ -2098,7 +2125,7 @@
 		fRef = 5FFD335F0FC627C100F94ABA /* Register.m */;
 		name = "Register.m: 16";
 		rLen = 0;
-		rLoc = 883;
+		rLoc = 1177;
 		rType = 0;
 		vrLen = 393;
 		vrLoc = 0;
@@ -2108,7 +2135,7 @@
 		fRef = 5FFD335F0FC627C100F94ABA /* Register.m */;
 		name = "Register.m: 16";
 		rLen = 0;
-		rLoc = 883;
+		rLoc = 1177;
 		rType = 0;
 		vrLen = 393;
 		vrLoc = 0;
@@ -2248,7 +2275,7 @@
 		fRef = 5FFD335F0FC627C100F94ABA /* Register.m */;
 		name = "Register.m: 16";
 		rLen = 0;
-		rLoc = 485;
+		rLoc = 779;
 		rType = 0;
 		vrLen = 473;
 		vrLoc = 400;
@@ -2258,7 +2285,7 @@
 		fRef = 5FFD335F0FC627C100F94ABA /* Register.m */;
 		name = "Register.m: 16";
 		rLen = 0;
-		rLoc = 485;
+		rLoc = 779;
 		rType = 0;
 		vrLen = 473;
 		vrLoc = 400;
@@ -2278,7 +2305,7 @@
 		fRef = 5FFD335F0FC627C100F94ABA /* Register.m */;
 		name = "Register.m: 16";
 		rLen = 0;
-		rLoc = 485;
+		rLoc = 779;
 		rType = 0;
 		vrLen = 473;
 		vrLoc = 400;
@@ -2292,6 +2319,268 @@
 		rType = 0;
 		vrLen = 303;
 		vrLoc = 0;
+	};
+	5FFABEE10FC7972800B49338 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 5FFD33570FC6270D00F94ABA /* MainView.h */;
+		name = "MainView.h: 6";
+		rLen = 0;
+		rLoc = 118;
+		rType = 0;
+		vrLen = 303;
+		vrLoc = 0;
+	};
+	5FFABEE20FC7972800B49338 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 5FFD33590FC6276F00F94ABA /* LoggedOutView.m */;
+		name = "LoggedOutView.m: 19";
+		rLen = 20;
+		rLoc = 523;
+		rType = 0;
+		vrLen = 546;
+		vrLoc = 0;
+	};
+	5FFABEE30FC7972800B49338 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 5FFD335F0FC627C100F94ABA /* Register.m */;
+		name = "Register.m: 16";
+		rLen = 0;
+		rLoc = 779;
+		rType = 0;
+		vrLen = 520;
+		vrLoc = 365;
+	};
+	5FFABEE40FC7972800B49338 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 5FFD33570FC6270D00F94ABA /* MainView.h */;
+		name = "MainView.h: 6";
+		rLen = 0;
+		rLoc = 118;
+		rType = 0;
+		vrLen = 303;
+		vrLoc = 0;
+	};
+	5FFABEE50FC7972800B49338 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 5FFD33590FC6276F00F94ABA /* LoggedOutView.m */;
+		name = "LoggedOutView.m: 19";
+		rLen = 20;
+		rLoc = 523;
+		rType = 0;
+		vrLen = 546;
+		vrLoc = 0;
+	};
+	5FFABEE60FC7972800B49338 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 5FFD335F0FC627C100F94ABA /* Register.m */;
+		name = "Register.m: 40";
+		rLen = 0;
+		rLoc = 3318;
+		rType = 0;
+		vrLen = 533;
+		vrLoc = 873;
+	};
+	5FFABEE80FC7976700B49338 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 5FFD335F0FC627C100F94ABA /* Register.m */;
+		name = "Register.m: 45";
+		rLen = 0;
+		rLoc = 3318;
+		rType = 0;
+		vrLen = 431;
+		vrLoc = 1002;
+	};
+	5FFABEEC0FCB33D200B49338 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		comments = "error: redefinition of '-[Register textFieldShouldReturn:]'";
+		fRef = 5FFD335F0FC627C100F94ABA /* Register.m */;
+		rLen = 0;
+		rLoc = 124;
+		rType = 1;
+	};
+	5FFABEED0FCB33D200B49338 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 5FFD335F0FC627C100F94ABA /* Register.m */;
+		name = "Register.m: 70";
+		rLen = 0;
+		rLoc = 3832;
+		rType = 0;
+		vrLen = 718;
+		vrLoc = 1400;
+	};
+	5FFABEEE0FCB33D300B49338 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 5FFD335F0FC627C100F94ABA /* Register.m */;
+		name = "Register.m: 66";
+		rLen = 0;
+		rLoc = 3832;
+		rType = 0;
+		vrLen = 248;
+		vrLoc = 1870;
+	};
+	5FFABEEF0FCB33D500B49338 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 5FFD335F0FC627C100F94ABA /* Register.m */;
+		name = "Register.m: 70";
+		rLen = 0;
+		rLoc = 3832;
+		rType = 0;
+		vrLen = 718;
+		vrLoc = 1400;
+	};
+	5FFABEF00FCB33F300B49338 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 5FFD335F0FC627C100F94ABA /* Register.m */;
+		name = "Register.m: 42";
+		rLen = 0;
+		rLoc = 1560;
+		rType = 0;
+		vrLen = 951;
+		vrLoc = 762;
+	};
+	5FFABEF10FCB341100B49338 /* PBXBookmark */ = {
+		isa = PBXBookmark;
+		fRef = 5FFD335F0FC627C100F94ABA /* Register.m */;
+	};
+	5FFABEF30FCB345C00B49338 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 5FFD335F0FC627C100F94ABA /* Register.m */;
+		name = "Register.m: 43";
+		rLen = 0;
+		rLoc = 1560;
+		rType = 0;
+		vrLen = 395;
+		vrLoc = 762;
+	};
+	5FFABEF60FCB345C00B49338 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 5FFD335F0FC627C100F94ABA /* Register.m */;
+		name = "Register.m: 34";
+		rLen = 0;
+		rLoc = 1560;
+		rType = 0;
+		vrLen = 665;
+		vrLoc = 785;
+	};
+	5FFABEF90FCB34A600B49338 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 5FFD335F0FC627C100F94ABA /* Register.m */;
+		name = "Register.m: 44";
+		rLen = 0;
+		rLoc = 1560;
+		rType = 0;
+		vrLen = 394;
+		vrLoc = 762;
+	};
+	5FFABEFA0FCB34A600B49338 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 5FFD335F0FC627C100F94ABA /* Register.m */;
+		name = "Register.m: 35";
+		rLen = 0;
+		rLoc = 1560;
+		rType = 0;
+		vrLen = 687;
+		vrLoc = 785;
+	};
+	5FFABEFE0FCB387E00B49338 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 5FFD335F0FC627C100F94ABA /* Register.m */;
+		name = "Register.m: 44";
+		rLen = 0;
+		rLoc = 1560;
+		rType = 0;
+		vrLen = 394;
+		vrLoc = 762;
+	};
+	5FFABEFF0FCB387E00B49338 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 5FFD335F0FC627C100F94ABA /* Register.m */;
+		name = "Register.m: 58";
+		rLen = 0;
+		rLoc = 3318;
+		rType = 0;
+		vrLen = 615;
+		vrLoc = 1307;
+	};
+	5FFABF000FCB3E6000B49338 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 5FFD33600FC627C100F94ABA /* Register.h */;
+		name = "Register.h: 11";
+		rLen = 0;
+		rLoc = 314;
+		rType = 0;
+		vrLen = 468;
+		vrLoc = 174;
+	};
+	5FFABF010FCB3E6000B49338 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 5FFD335F0FC627C100F94ABA /* Register.m */;
+		name = "Register.m: 2";
+		rLen = 0;
+		rLoc = 21;
+		rType = 0;
+		vrLen = 434;
+		vrLoc = 0;
+	};
+	5FFABF020FCB3E6000B49338 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 5FFD335F0FC627C100F94ABA /* Register.m */;
+		name = "Register.m: 2";
+		rLen = 0;
+		rLoc = 21;
+		rType = 0;
+		vrLen = 434;
+		vrLoc = 0;
+	};
+	5FFABF030FCB3E6000B49338 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 5FFD33600FC627C100F94ABA /* Register.h */;
+		name = "Register.h: 11";
+		rLen = 0;
+		rLoc = 314;
+		rType = 0;
+		vrLen = 468;
+		vrLoc = 174;
+	};
+	5FFABF040FCB3E6000B49338 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 5FFD335F0FC627C100F94ABA /* Register.m */;
+		name = "Register.m: 5";
+		rLen = 0;
+		rLoc = 340;
+		rType = 0;
+		vrLen = 392;
+		vrLoc = 0;
+	};
+	5FFABF0D0FCB445700B49338 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 5FFD335F0FC627C100F94ABA /* Register.m */;
+		name = "Register.m: 42";
+		rLen = 0;
+		rLoc = 1560;
+		rType = 0;
+		vrLen = 490;
+		vrLoc = 1179;
+	};
+	5FFABF0F0FCB450C00B49338 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 5FFD335F0FC627C100F94ABA /* Register.m */;
+		name = "Register.m: 42";
+		rLen = 0;
+		rLoc = 1560;
+		rType = 0;
+		vrLen = 490;
+		vrLoc = 1179;
+	};
+	5FFABF130FCB458700B49338 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 5FFD335F0FC627C100F94ABA /* Register.m */;
+		name = "Register.m: 70";
+		rLen = 0;
+		rLoc = 2195;
+		rType = 0;
+		vrLen = 343;
+		vrLoc = 1179;
 	};
 	5FFD334A0FC626C800F94ABA /* hollr */ = {
 		isa = PBXExecutable;
@@ -2339,7 +2628,7 @@
 	};
 	5FFD33570FC6270D00F94ABA /* MainView.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {519, 230}}";
+			sepNavIntBoundsRect = "{{0, 0}, {519, 253}}";
 			sepNavSelRange = "{118, 0}";
 			sepNavVisRange = "{0, 303}";
 		};
@@ -2347,8 +2636,8 @@
 	5FFD33590FC6276F00F94ABA /* LoggedOutView.m */ = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {519, 530}}";
-			sepNavSelRange = "{301, 421}";
-			sepNavVisRange = "{275, 541}";
+			sepNavSelRange = "{523, 20}";
+			sepNavVisRange = "{0, 546}";
 			sepNavWindowFrame = "{{674, 53}, {455, 419}}";
 		};
 	};
@@ -2376,17 +2665,17 @@
 	};
 	5FFD335F0FC627C100F94ABA /* Register.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {519, 742}}";
-			sepNavSelRange = "{485, 0}";
-			sepNavVisRange = "{400, 473}";
-			sepNavWindowFrame = "{{42, -26}, {454, 462}}";
+			sepNavIntBoundsRect = "{{0, 0}, {470, 1904}}";
+			sepNavSelRange = "{2195, 0}";
+			sepNavVisRange = "{1179, 343}";
+			sepNavWindowFrame = "{{304, 125}, {594, 509}}";
 		};
 	};
 	5FFD33600FC627C100F94ABA /* Register.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {455, 364}}";
-			sepNavSelRange = "{627, 0}";
-			sepNavVisRange = "{0, 641}";
+			sepNavIntBoundsRect = "{{0, 0}, {434, 350}}";
+			sepNavSelRange = "{314, 0}";
+			sepNavVisRange = "{174, 468}";
 			sepNavWindowFrame = "{{32, 369}, {514, 409}}";
 		};
 	};

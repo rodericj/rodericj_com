@@ -9,7 +9,6 @@
 	IBOutlet UITextField *password;
 	IBOutlet UITextField *confirmPassword;
 
-
 }
 @property (nonatomic, retain) UITextField *userName;
 @property (nonatomic, retain) UITextField *email;
