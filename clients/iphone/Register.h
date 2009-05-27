@@ -8,6 +8,7 @@
 	IBOutlet UITextField *lastName;
 	IBOutlet UITextField *password;
 	IBOutlet UITextField *confirmPassword;
+	NSMutableData *receivedData;
 
 }
 @property (nonatomic, retain) UITextField *userName;
