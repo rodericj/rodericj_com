@@ -10,8 +10,8 @@ from django.contrib.auth import models
 # Create your models here.
 class CUser(db.Model):
 	#unique
-	#user = db.ReferenceProperty(models.User)
-	user = db.UserProperty(User)
+	user = db.ReferenceProperty(models.User)
+	#user = db.UserProperty(User)
 	#unique
 	phone_number = db.PhoneNumberProperty()
 	#clients = db.ListProperty(str)

@@ -8,7 +8,6 @@ q = CAction.all()
 q1 = q.filter('date_to_be_executed <', datetime.now())
 q2 = q1.filter('finished =', False)
 results = q2.fetch(1000)
-logging.debug("sentering cron "+str(len(results)))
 
 for i in results:
 	message = i.memo+ " " + i.phone_number

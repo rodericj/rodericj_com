@@ -7,6 +7,7 @@ urlpatterns = patterns('',
     # Uncomment this for admin:
      #(r'^admin/', include('django.contrib.admin.urls')),
      (r'^$', 'callme.views.start'),
+     (r'^test/', 'callme.views.test'),
      (r'^createprofile/', 'callme.views.createprofile'),
      (r'^create/', 'callme.views.create'),
      (r'^newaction/', 'callme.views.newaction'),

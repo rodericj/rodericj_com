@@ -14,6 +14,17 @@ from google.appengine.api import users
 
 from ragendja.template import render_to_response
 
+def test(request):
+	ret = {}
+	for post in request.POST:
+		logging.debug(post+ " " + request.POST[post])
+		ret[post] = request.POST[post]
+	#ret['status_code'] = 0
+	ret = [1,2,3,4,5]
+	ret = "Success, you can login now"
+	logging.debug("returning this: "+ str(ret))
+	return HttpResponse(ret)
+	
 def start(request):
 	logging.debug("start")
 	user = request.user
@@ -80,14 +91,13 @@ def createprofile(request):
 			logging.error('error in validation of phone number')
 
 		else:
-			user = request.user
-			logging.warn("request.user type: " + str(type(user)))
+			#logging.warn("request.user type: " + str(type(user)))
 
-			userProfile = CUser(user=user, phone_number=phone_number, date_last_used=now,
+			userProfile = CUser(user = request.user, phone_number=phone_number, date_last_used=now,
 			verified=False, clients=1, secret=secret)
 			userProfile.save()
 			#user.save()
-			request.user = user
+			#request.user = user
 			sendConfirmation(userProfile, phone_number)
 			rc['val'] = 0
 			rc['numbersent'] = True
@@ -188,7 +198,7 @@ def newaction(request):
 	action.phone_number = phone_number
 	action.message = 1#message
 	#TODO Need to make a more robust timezone thing. this is so whack.
-	action.date_to_be_executed = date + timedelta(hours=+7)
+	action.date_to_be_executed = date #+ timedelta(hours=+7)
 	action.date_created = now
 	action.date_finished = now
 	action.memo = memo
