@@ -1,11 +1,10 @@
-from callme.models import CAction, CUser
+from callme.models import CAction
 from datetime import datetime, timedelta
 import logging
 from callme import callmeutil
-from google.appengine.api import users
 
 q = CAction.all()
-q1 = q.filter('date_to_be_executed <', datetime.now())
+q1 = q.filter('date_to_be_executed <', datetime.now()+timedelta(hours=-7))
 q2 = q1.filter('finished =', False)
 results = q2.fetch(1000)
 

@@ -73,7 +73,8 @@ def createprofile(request):
 	post = request.POST
 
 	if request.user.get_profile():
-		logging.warn("We DO NOT want to create the new user: he looks like this: "+ request.user.get_profile())
+		#logging.warn("We DO NOT want to create the new user: he looks like this: "+ request.user.get_profile())
+		logging.warn("We DO NOT want to create the new user")#: he looks like this: "+ request.user.get_profile())
 
 	#if phone number entered then we set up the new CUser
 	if post.has_key('phone_number1') and post.has_key('phone_number2') and post.has_key('phone_number3'):
