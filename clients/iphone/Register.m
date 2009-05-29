@@ -16,36 +16,12 @@ static const CGFloat PORTRAIT_KEYBOARD_HEIGHT = 216;
 static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 162;
 
 
-- (IBAction)sendRegistrationInfo {
-	NSString *post = [NSString stringWithFormat:@"username=%@&email=%@&firstName=%@&lastName=%@&password=%@&confirmPassword=%@",
-	 userName.text, email.text, firstName.text, lastName.text, 
-	 password.text, confirmPassword.text, 123];
-   // NSString *post = @"cool=val1&key2=val2";
-	NSLog(post);
-    NSData *postData = [post dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
-	
-    NSString *postLength = [NSString stringWithFormat:@"%d", [postData length]];
-	
-    NSMutableURLRequest *request = [[[NSMutableURLRequest alloc] init] autorelease];
-    [request setURL:[NSURL URLWithString:@"http://localhost:8080/callme/test/"]];
-    [request setHTTPMethod:@"POST"];
-    [request setValue:postLength forHTTPHeaderField:@"Content-Length"];
-    [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
-    [request setHTTPBody:postData];
-    
-    NSURLConnection *conn=[[NSURLConnection alloc] initWithRequest:request delegate:self];
-    if (conn) 
-    {
-		NSLog(@"if conn returned true");
-        receivedData = [[NSMutableData data] retain];
-    } 
-    else 
-    {
-		NSLog(@"if conn returned False. Could not make connection");
 
-        // inform the user that the download could not be made
-    }
-}
+/*
+ Stuff involving the touches and text field stuff
+ */
+
+
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
@@ -62,35 +38,21 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 162;
 	[super touchesBegan:touches withEvent:event];
 }
 
-- (void)updateStrings{
-	NSLog(userName.text);
-	NSLog(email.text);
-	NSLog(firstName.text);
-	NSLog(lastName.text);
-	NSLog(password.text);
-	NSLog(confirmPassword.text);
+- (IBAction)doneEditingText:(UITextField *) textField{
+	NSLog(@"Yoz");
+	NSLog(textField.text);
 }
 
-- (BOOL)textFieldShouldClear:(UITextField *)textField {
-	return NO;
-}
 
-- (void)textFieldDidEndEditing:(UITextField *)textField
-{
-    CGRect viewFrame = self.frame;
-    viewFrame.origin.y += animatedDistance;
-    
-    [UIView beginAnimations:nil context:NULL];
-    [UIView setAnimationBeginsFromCurrentState:YES];
-    [UIView setAnimationDuration:KEYBOARD_ANIMATION_DURATION];
-    
-    [self setFrame:viewFrame];
-    
-    [UIView commitAnimations];
-}
+
+//- (BOOL)textFieldShouldClear:(UITextField *)textField {
+//	return YES;
+//}
+
 
 - (BOOL) textFieldShouldBeginEditing:(UITextField *)textField{
 	{
+		NSLog(@"begin editing");
 		CGRect textFieldRect =
         [self.window convertRect:textField.bounds fromView:textField];
 		CGRect viewRect =
@@ -128,6 +90,60 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 162;
 		[UIView commitAnimations];
 		return YES;
 	}
+}
+
+- (BOOL)textFieldShouldEndEditing:(UITextField *)textField
+{
+	CGRect viewRect = [self.window convertRect:self.bounds fromView:self];
+	NSLog([NSString stringWithFormat: @"end editing %d",viewRect.origin.y]);
+    CGRect viewFrame = self.frame;
+    viewFrame.origin.y += animatedDistance;
+    
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationBeginsFromCurrentState:YES];
+    [UIView setAnimationDuration:KEYBOARD_ANIMATION_DURATION];
+    
+    [self setFrame:viewFrame];
+    
+    [UIView commitAnimations];
+	return YES;
+}
+
+
+/*
+ Stuff involving the network communication
+ */
+
+
+- (IBAction)sendRegistrationInfo {
+	NSString *post = [NSString stringWithFormat:@"username=%@&email=%@&firstName=%@&lastName=%@&password=%@&confirmPassword=%@",
+					  userName.text, email.text, firstName.text, lastName.text, 
+					  password.text, confirmPassword.text, 123];
+	// NSString *post = @"cool=val1&key2=val2";
+	NSLog(post);
+    NSData *postData = [post dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
+	
+    NSString *postLength = [NSString stringWithFormat:@"%d", [postData length]];
+	
+    NSMutableURLRequest *request = [[[NSMutableURLRequest alloc] init] autorelease];
+    [request setURL:[NSURL URLWithString:@"http://localhost:8080/callme/test/"]];
+    [request setHTTPMethod:@"POST"];
+    [request setValue:postLength forHTTPHeaderField:@"Content-Length"];
+    [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
+    [request setHTTPBody:postData];
+    
+    NSURLConnection *conn=[[NSURLConnection alloc] initWithRequest:request delegate:self];
+    if (conn) 
+    {
+		NSLog(@"if conn returned true");
+        receivedData = [[NSMutableData data] retain];
+    } 
+    else 
+    {
+		NSLog(@"if conn returned False. Could not make connection");
+		
+        // inform the user that the download could not be made
+    }
 }
 
 - (void)didReceiveMemoryWarning

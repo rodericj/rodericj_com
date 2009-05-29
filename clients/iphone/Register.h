@@ -10,6 +10,7 @@
 	IBOutlet UITextField *confirmPassword;
 	NSMutableData *receivedData;
 
+
 }
 @property (nonatomic, retain) UITextField *userName;
 @property (nonatomic, retain) UITextField *email;
@@ -20,6 +21,6 @@
 
 
 - (IBAction)sendRegistrationInfo;
-- (IBAction)updateStrings;
-
+//By passing a UITextField Object we are able to determine exactly what text changed
+- (IBAction)doneEditingText:(UITextField *)textField;
 @end
