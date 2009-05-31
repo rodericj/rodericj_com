@@ -11,6 +11,8 @@ from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
 from django.utils.translation import ugettext as _
 from google.appengine.api import users
+from django.utils import simplejson
+
 
 from ragendja.template import render_to_response
 
@@ -19,11 +21,9 @@ def test(request):
 	for post in request.POST:
 		logging.debug(post+ " " + request.POST[post])
 		ret[post] = request.POST[post]
+		
 	#ret['status_code'] = 0
-	ret = [1,2,3,4,5]
-	ret = "Success, you can login now"
-	logging.debug("returning this: "+ str(ret))
-	return HttpResponse(ret)
+	return HttpResponse(simplejson.dumps(ret))
 	
 def start(request):
 	logging.debug("start")

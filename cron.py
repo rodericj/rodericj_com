@@ -1,3 +1,4 @@
+import common.appenginepatch.main
 from callme.models import CAction
 from datetime import datetime, timedelta
 import logging

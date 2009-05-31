@@ -30,7 +30,7 @@ def populatecreatepage(user):
  			'may', 'june', 'july', 'august',
  			'september', 'october', 'november', 'december']
 		this_year = datetime.now().year
-		nowday = datetime.now().day-1
+		nowday = datetime.now().day
 		nowmonth = months[datetime.now().month-1]
 		years = range(this_year, this_year+5)	
 		profile = user.get_profile()

@@ -9,6 +9,9 @@ handlers:
 - url: /media
   static_dir: _generated_media
 
+- url: /callme/cron1/
+  script: cron1.py
+
 - url: /callme/cron/
   script: cron.py
 
